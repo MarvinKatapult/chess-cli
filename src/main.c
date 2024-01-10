@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <board.h>
 
 int main( int argv, char ** argc ) {
     
@@ -8,7 +9,10 @@ int main( int argv, char ** argc ) {
     if ( argv < 2 ) board_string = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
     else board_string = argc[1];
 
-    printf( "Startboardstring: %s\n", board_string );
+    // Create Board
+    struct Board board;
+    boardInit( &board );
+    fromString( &board, board_string );
 
     return 0;
 }
