@@ -1,1 +1,1 @@
-gcc -Wall src/main.c -Iinclude -o chess
+gcc -Wall src/main.c src/board.c src/square.c -Iinclude -o chess
