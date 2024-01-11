@@ -1,10 +1,14 @@
+#ifndef __SQUARE__
+#define __SQUARE__
 
 #define WHITE_SQUARE   0
 #define BLACK_SQUARE   1
 
-struct Square {
+typedef struct s_Square {
     char piece;
     unsigned int x;
     unsigned int y;
     unsigned int color;
-};
+} Square;
+
+#endif

@@ -1,23 +1,28 @@
+#ifndef __BOARD__
+#define __BOARD__
+
 #include <stdio.h>
 #include <square.h>
 
 #define COUNT_BOARD_SQUARES     64
 
-struct Board {
+typedef struct s_Board {
 
-    struct Square squares[64];    
+    Square squares[64];    
 
-};
+} Board;
 
 /**
  * @brief Initiates the Board
  * @param board Board
  */
-void boardInit( struct Board * board );
+void boardInit( Board * board );
 
 /**
  * @brief Sets the Chessboard from fenstring
  * @param board Board
  * @param fen_string Fenstring
  */
-void fromString( struct Board * board, const char * fen_string );
+void fromString( Board * board, const char * fen_string );
+
+#endif
