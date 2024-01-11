@@ -3,6 +3,11 @@
 
 #include <stdio.h>
 #include <square.h>
+#include <tdef.h>
+#include <consoleio.h>
+
+#include <ctype.h>
+#include <stdlib.h>
 
 #define COUNT_BOARD_SQUARES     64
 
@@ -23,6 +28,12 @@ void boardInit( Board * board );
  * @param board Board
  * @param fen_string Fenstring
  */
-void fromString( Board * board, const char * fen_string );
+void fromString( Board * board, cstring fen_string );
 
-#endif
+/**
+ * @brief Prints the chessboard to the screen
+ * @param board Board
+ */
+void printBoard( Board * board );
+
+#endif // __BOARD__

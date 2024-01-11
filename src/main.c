@@ -12,9 +12,9 @@ int main( int argc, string_array argv ) {
     else board_string = argv[1];
 
     // Create Board
-    struct Board board;
+    Board board;
     boardInit( &board );
-    //fromString( &board, board_string );
+    fromString( &board, board_string );
 
     return 0;
 }
