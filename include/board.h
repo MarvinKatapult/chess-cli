@@ -9,11 +9,14 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-#define COUNT_BOARD_SQUARES     64
+#define COUNT_BOARD_SQUARES        64
+#define COUNT_SQUARES_PER_ROW      8
+
+#define STARTING_FEN_STRING        "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
 
 typedef struct s_Board {
 
-    Square squares[64];    
+    Square squares[COUNT_BOARD_SQUARES];
 
 } Board;
 

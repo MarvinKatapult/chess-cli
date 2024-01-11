@@ -5,10 +5,10 @@
  * @param board Board
  */
 void boardInit( Board * p_board ) {
-    for ( uint32 y = 0; y < COUNT_BOARD_SQUARES / 9; y++ ) {
-        for ( uint32 x = 0; x < COUNT_BOARD_SQUARES / 9; x++ ) {
-            const uint32 index = x + y * 9;
-            Square * square = p_board->squares + index;
+    for ( uint32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
+        for ( uint32 x = 0; x < COUNT_SQUARES_PER_ROW; x++ ) {
+            const uint32 index = x + y * COUNT_SQUARES_PER_ROW;
+            Square * square = &( p_board->squares[index] );
 
             // Set Color for Squares in Board
             if ( index % 2 == 0 ) square->color = WHITE_SQUARE;
