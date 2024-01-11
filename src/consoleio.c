@@ -4,7 +4,8 @@
  * @brief Clears the console buffer.
  */
 void c_clear( void ) {
-    printf("\033[2J");
+    printf( "\033[2J" );
+    printf( "\033[0;0H" );
 }
 
 /**
