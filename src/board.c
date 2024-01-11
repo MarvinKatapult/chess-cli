@@ -69,7 +69,7 @@ void fromString( Board * p_board, cstring p_fen_string ) {
 void printBoard( Board * p_board ) {
 
     // Clear the screen
-    // c_clear();
+    c_clear();
     c_print( "\n" );
 
     // Print Board
