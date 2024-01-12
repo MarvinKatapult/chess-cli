@@ -7,10 +7,10 @@
 void boardInit( Board * p_board ) {
     for ( uint32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
         for ( uint32 x = 0; x < COUNT_SQUARES_PER_ROW; x++ ) {
-            const uint32 index = x + y * COUNT_SQUARES_PER_ROW;
-            Square * square = &( p_board->squares[index] );
+            Square * square = &( p_board->squares[y][x] );
 
             // Set Color for Squares in Board
+            uint32 index = x + y * COUNT_SQUARES_PER_ROW; 
             if ( index % 2 == 0 ) square->color = WHITE_SQUARE;
             else square->color = BLACK_SQUARE;
 
@@ -43,6 +43,10 @@ void fromString( Board * p_board, cstring p_fen_string ) {
         if ( current_char == '/' )
             continue;
 
+        // Calculate x and y of square
+        uint32 x_index = square_index % COUNT_SQUARES_PER_ROW;
+        uint32 y_index = square_index / COUNT_SQUARES_PER_ROW;
+
         // If Char is a number skip fields
         if ( isdigit( current_char ) ) {
             // Convert to number
@@ -53,13 +57,12 @@ void fromString( Board * p_board, cstring p_fen_string ) {
 
         // If current char is alpha read piece
         if ( isalpha( current_char ) ) {
-            p_board->squares[square_index].piece = current_char;
+            // TODO Wrong Need to refactor
+            p_board->squares[y_index][x_index].piece = current_char;
             square_index++; 
             continue;
         } 
     }
-
-    printBoard( p_board );
 }
 
 /**
@@ -72,9 +75,73 @@ void printBoard( Board * p_board ) {
     c_clear();
 
     // Print Board
-    for ( uint32 i = 0; i < COUNT_BOARD_SQUARES; i++ ) {
-        c_print( "%c ", p_board->squares[i].piece );
+    for ( uint32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
+        for ( uint32 x = 0; x < COUNT_SQUARES_PER_ROW; x++ ) {
+            c_print( "%c ", p_board->squares[y][x].piece );
+        }
         // At the end of line, do linebreak
-        if ( (i + 1) % 8 == 0 ) c_print( "\n" );
+        printf( "\n" );
     }
+}
+
+/**
+ * @brief Moves a Piece on Board with the common chess notation
+ * @param board Board
+ * @param move Move e.g. "exd5"
+ * @return true, if move was legal
+ */
+bool movePieceWithNotation( Board * board, cstring move ) {
+
+    char current_char = move[0];
+    if ( current_char == '0' ) {
+        // CASTLING
+        // CHECK IF BIG OR SMALL CASTLE
+    } else if ( IS_CHESS_COL( current_char ) ) {
+        // PAWN MOVE OR PRECISION BECAUSE OF TWO OR MORE POSSIBLE MOVES
+
+    } else if ( isdigit( current_char ) ) {
+        // PRECISION BECAUSE OF TWO OR MORE POSSIBLE MOVES
+
+    } else if ( isPiece( current_char ) ) {
+        // PIECE MOVE 
+
+    }
+
+    // Couldnt Read String
+    c_print( "Wrong format\n" );
+    return false;
+}
+
+/**
+ * @brief Moves a Piece on Board from x1 and y1 to x2 and y2
+ * @param board Board
+ * @param x1 X1
+ * @param y1 Y1
+ * @param x2 X2
+ * @param y2 Y2
+ * @return true, if move was successful
+ */
+bool movePiece( Board * p_board, uint32 p_x1, uint32 p_y1, uint32 p_x2, uint32 p_y2 ) {
+    char piece_to_move = p_board->squares[p_y1][p_x1].piece;
+    if ( piece_to_move == ' ' ) return false;
+    // TODO Need to check for same colored piece
+    p_board->squares[p_y2][p_x2].piece = piece_to_move;
+    // Delete Trailing Piece
+    p_board->squares[p_y1][p_x1].piece = ' ';
+
+    return true;
+}
+
+/**
+ * @brief Returns if char is symbol of a piece
+ * @param p Char to check
+ * @return true, if is piece, otherwise false
+ */
+bool isPiece( char p ) {
+    return ( p == WHITE_PAWN   || p == BLACK_PAWN
+          || p == WHITE_KNIGHT || p == BLACK_KNIGHT
+          || p == WHITE_BISHOP || p == BLACK_BISHOP
+          || p == WHITE_ROOK   || p == BLACK_ROOK
+          || p == WHITE_QUEEN  || p == BLACK_QUEEN
+          || p == WHITE_KING   || p == BLACK_KING );
 }
