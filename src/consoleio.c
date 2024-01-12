@@ -102,8 +102,3 @@ cstring c_scan_string_size( uint32 p_intput_size ) {
         return in;
     return NULL;
 }
-=======
-    va_start(args, p_format);
-    vfprintf( p_file, p_format, args);
-    va_end(args);
-}
