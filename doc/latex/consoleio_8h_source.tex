@@ -1,0 +1,31 @@
+\hypertarget{consoleio_8h_source}{}\doxysection{consoleio.\+h}
+\label{consoleio_8h_source}\index{include/consoleio.h@{include/consoleio.h}}
+\mbox{\hyperlink{consoleio_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_CONSOLEIO\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_CONSOLEIO\_H\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{tdef_8h}{tdef.h}}"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <stdarg.h>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#define IN\_STRING\_SIZE 80}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{19 \textcolor{keywordtype}{void} \mbox{\hyperlink{consoleio_8h_a997e458e68212cb2b70b5256757cacb6}{c\_set\_cursor}}( \mbox{\hyperlink{tdef_8h_acbd4acd0d29e2d6c43104827f77d9cd2}{uint32}} x, \mbox{\hyperlink{tdef_8h_acbd4acd0d29e2d6c43104827f77d9cd2}{uint32}} y );}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{24 \textcolor{keywordtype}{void} \mbox{\hyperlink{consoleio_8h_a8c085897c8de1df8eead74a2b9e8cb97}{c\_clear}}( \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{32 \textcolor{keywordtype}{void} \mbox{\hyperlink{consoleio_8h_a3c6b07a213d04eaf13aa7ac7161ea37f}{c\_print}}( \mbox{\hyperlink{tdef_8h_a5a6534f59959c993a087b6bd6baa5e27}{cstring}} format, ... );}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{40 \textcolor{keywordtype}{void} \mbox{\hyperlink{consoleio_8h_a5e39cc71e2c89c1809693208dd5d1d33}{c\_print\_err}}( \mbox{\hyperlink{tdef_8h_a5a6534f59959c993a087b6bd6baa5e27}{cstring}} format, ... );}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{49 \textcolor{keywordtype}{void} \mbox{\hyperlink{consoleio_8h_a906bb7c581766eb6cf46a164afa4af7e}{c\_fprint}}( FILE * stream, \mbox{\hyperlink{tdef_8h_a5a6534f59959c993a087b6bd6baa5e27}{cstring}} format, ... );}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{58 \textcolor{keywordtype}{int} \mbox{\hyperlink{consoleio_8h_a45468a072b625675548644e1214f4f75}{c\_scan}}( \mbox{\hyperlink{tdef_8h_a5a6534f59959c993a087b6bd6baa5e27}{cstring}} format, ... );}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{65 \textcolor{keywordtype}{string} \mbox{\hyperlink{consoleio_8h_a50ab7af4c44047d4b286b8e0bce94d50}{c\_scan\_string}}( \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{73 \textcolor{keywordtype}{string} \mbox{\hyperlink{consoleio_8h_ad3eba9329946e5475b23f39e2f8c2286}{c\_scan\_string\_size}}( \mbox{\hyperlink{tdef_8h_acbd4acd0d29e2d6c43104827f77d9cd2}{uint32}} input\_size );}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_CONSOLEIO\_H\_}}
+
+\end{DoxyCode}

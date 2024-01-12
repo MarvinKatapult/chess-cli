@@ -1,0 +1,181 @@
+\hypertarget{consoleio_8h}{}\doxysection{include/consoleio.h File Reference}
+\label{consoleio_8h}\index{include/consoleio.h@{include/consoleio.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{consoleio_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{consoleio_8h_acbc1810ad9c91f2730c1b19cecf7fe6d}{IN\+\_\+\+STRING\+\_\+\+SIZE}}~80
+\begin{DoxyCompactList}\small\item\em Default max size of the string input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{consoleio_8h_a997e458e68212cb2b70b5256757cacb6}{c\+\_\+set\+\_\+cursor}} (\mbox{\hyperlink{tdef_8h_acbd4acd0d29e2d6c43104827f77d9cd2}{uint32}} x, \mbox{\hyperlink{tdef_8h_acbd4acd0d29e2d6c43104827f77d9cd2}{uint32}} y)
+\begin{DoxyCompactList}\small\item\em Sets the cursor position to (y$\vert$x) where x=column, y=row. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{consoleio_8h_a8c085897c8de1df8eead74a2b9e8cb97}{c\+\_\+clear}} (void)
+\begin{DoxyCompactList}\small\item\em Clears the console buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{consoleio_8h_a3c6b07a213d04eaf13aa7ac7161ea37f}{c\+\_\+print}} (\mbox{\hyperlink{tdef_8h_a5a6534f59959c993a087b6bd6baa5e27}{cstring}} format,...)
+\begin{DoxyCompactList}\small\item\em Writes the C string pointed by format to the standart output (stdout). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{consoleio_8h_a5e39cc71e2c89c1809693208dd5d1d33}{c\+\_\+print\+\_\+err}} (\mbox{\hyperlink{tdef_8h_a5a6534f59959c993a087b6bd6baa5e27}{cstring}} format,...)
+\begin{DoxyCompactList}\small\item\em Writes the C string pointed by format to the error output (stderr). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{consoleio_8h_a906bb7c581766eb6cf46a164afa4af7e}{c\+\_\+fprint}} (FILE $\ast$stream, \mbox{\hyperlink{tdef_8h_a5a6534f59959c993a087b6bd6baa5e27}{cstring}} format,...)
+\begin{DoxyCompactList}\small\item\em Writes the C string pointed by format to the stream. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{consoleio_8h_a45468a072b625675548644e1214f4f75}{c\+\_\+scan}} (\mbox{\hyperlink{tdef_8h_a5a6534f59959c993a087b6bd6baa5e27}{cstring}} format,...)
+\begin{DoxyCompactList}\small\item\em Reads data from stdin and stores them according to the parameter format into the locations pointed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{tdef_8h_a4505c08c065b48840a30eedd9845cce2}{string}} \mbox{\hyperlink{consoleio_8h_a50ab7af4c44047d4b286b8e0bce94d50}{c\+\_\+scan\+\_\+string}} (void)
+\begin{DoxyCompactList}\small\item\em Reads data from stdin and returns the input as a const string with max size of IN\+\_\+\+STRING\+\_\+\+SIZE. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{tdef_8h_a4505c08c065b48840a30eedd9845cce2}{string}} \mbox{\hyperlink{consoleio_8h_ad3eba9329946e5475b23f39e2f8c2286}{c\+\_\+scan\+\_\+string\+\_\+size}} (\mbox{\hyperlink{tdef_8h_acbd4acd0d29e2d6c43104827f77d9cd2}{uint32}} input\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Reads data from stdin and returns the input as a const string with max size of intput\+\_\+size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{consoleio_8h_acbc1810ad9c91f2730c1b19cecf7fe6d}\label{consoleio_8h_acbc1810ad9c91f2730c1b19cecf7fe6d}} 
+\index{consoleio.h@{consoleio.h}!IN\_STRING\_SIZE@{IN\_STRING\_SIZE}}
+\index{IN\_STRING\_SIZE@{IN\_STRING\_SIZE}!consoleio.h@{consoleio.h}}
+\doxysubsubsection{\texorpdfstring{IN\_STRING\_SIZE}{IN\_STRING\_SIZE}}
+{\footnotesize\ttfamily \#define IN\+\_\+\+STRING\+\_\+\+SIZE~80}
+
+
+
+Default max size of the string input. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{consoleio_8h_a8c085897c8de1df8eead74a2b9e8cb97}\label{consoleio_8h_a8c085897c8de1df8eead74a2b9e8cb97}} 
+\index{consoleio.h@{consoleio.h}!c\_clear@{c\_clear}}
+\index{c\_clear@{c\_clear}!consoleio.h@{consoleio.h}}
+\doxysubsubsection{\texorpdfstring{c\_clear()}{c\_clear()}}
+{\footnotesize\ttfamily void c\+\_\+clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Clears the console buffer. 
+
+\mbox{\Hypertarget{consoleio_8h_a906bb7c581766eb6cf46a164afa4af7e}\label{consoleio_8h_a906bb7c581766eb6cf46a164afa4af7e}} 
+\index{consoleio.h@{consoleio.h}!c\_fprint@{c\_fprint}}
+\index{c\_fprint@{c\_fprint}!consoleio.h@{consoleio.h}}
+\doxysubsubsection{\texorpdfstring{c\_fprint()}{c\_fprint()}}
+{\footnotesize\ttfamily void c\+\_\+fprint (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{stream,  }\item[{\mbox{\hyperlink{tdef_8h_a5a6534f59959c993a087b6bd6baa5e27}{cstring}}}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Writes the C string pointed by format to the stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & Pointer to a FILE object that identifies an output stream. \\
+\hline
+{\em format} & C string that contains the text to be written to the stream. \\
+\hline
+{\em ...} & Additional arguments to format the string. Any more arguments than specifiers get ignored. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{consoleio_8h_a3c6b07a213d04eaf13aa7ac7161ea37f}\label{consoleio_8h_a3c6b07a213d04eaf13aa7ac7161ea37f}} 
+\index{consoleio.h@{consoleio.h}!c\_print@{c\_print}}
+\index{c\_print@{c\_print}!consoleio.h@{consoleio.h}}
+\doxysubsubsection{\texorpdfstring{c\_print()}{c\_print()}}
+{\footnotesize\ttfamily void c\+\_\+print (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tdef_8h_a5a6534f59959c993a087b6bd6baa5e27}{cstring}}}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Writes the C string pointed by format to the standart output (stdout). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & C string that contains the text to be written to stdout. \\
+\hline
+{\em ...} & Additional arguments to format the string. Any more arguments than specifiers get ignored. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{consoleio_8h_a5e39cc71e2c89c1809693208dd5d1d33}\label{consoleio_8h_a5e39cc71e2c89c1809693208dd5d1d33}} 
+\index{consoleio.h@{consoleio.h}!c\_print\_err@{c\_print\_err}}
+\index{c\_print\_err@{c\_print\_err}!consoleio.h@{consoleio.h}}
+\doxysubsubsection{\texorpdfstring{c\_print\_err()}{c\_print\_err()}}
+{\footnotesize\ttfamily void c\+\_\+print\+\_\+err (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tdef_8h_a5a6534f59959c993a087b6bd6baa5e27}{cstring}}}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Writes the C string pointed by format to the error output (stderr). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & C string that contains the text to be written to stderr. \\
+\hline
+{\em ...} & Additional arguments to format the string. Anymore arguments than specifiers get ignored. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{consoleio_8h_a45468a072b625675548644e1214f4f75}\label{consoleio_8h_a45468a072b625675548644e1214f4f75}} 
+\index{consoleio.h@{consoleio.h}!c\_scan@{c\_scan}}
+\index{c\_scan@{c\_scan}!consoleio.h@{consoleio.h}}
+\doxysubsubsection{\texorpdfstring{c\_scan()}{c\_scan()}}
+{\footnotesize\ttfamily int c\+\_\+scan (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tdef_8h_a5a6534f59959c993a087b6bd6baa5e27}{cstring}}}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Reads data from stdin and stores them according to the parameter format into the locations pointed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & C string that contains a sequence of characters that control how characters extracted from the stream are treated. \\
+\hline
+{\em ...} & Additional arguments to store the imput \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$\ast$ int On Success, the function returns the number of items of the argument list successfully filled. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{consoleio_8h_a50ab7af4c44047d4b286b8e0bce94d50}\label{consoleio_8h_a50ab7af4c44047d4b286b8e0bce94d50}} 
+\index{consoleio.h@{consoleio.h}!c\_scan\_string@{c\_scan\_string}}
+\index{c\_scan\_string@{c\_scan\_string}!consoleio.h@{consoleio.h}}
+\doxysubsubsection{\texorpdfstring{c\_scan\_string()}{c\_scan\_string()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tdef_8h_a4505c08c065b48840a30eedd9845cce2}{string}} c\+\_\+scan\+\_\+string (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Reads data from stdin and returns the input as a const string with max size of IN\+\_\+\+STRING\+\_\+\+SIZE. 
+
+\begin{DoxyReturn}{Returns}
+cstring C string read from stdin. Needs to be freed manually 
+\end{DoxyReturn}
+\mbox{\Hypertarget{consoleio_8h_ad3eba9329946e5475b23f39e2f8c2286}\label{consoleio_8h_ad3eba9329946e5475b23f39e2f8c2286}} 
+\index{consoleio.h@{consoleio.h}!c\_scan\_string\_size@{c\_scan\_string\_size}}
+\index{c\_scan\_string\_size@{c\_scan\_string\_size}!consoleio.h@{consoleio.h}}
+\doxysubsubsection{\texorpdfstring{c\_scan\_string\_size()}{c\_scan\_string\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tdef_8h_a4505c08c065b48840a30eedd9845cce2}{string}} c\+\_\+scan\+\_\+string\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tdef_8h_acbd4acd0d29e2d6c43104827f77d9cd2}{uint32}}}]{input\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Reads data from stdin and returns the input as a const string with max size of intput\+\_\+size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+size} & Max size of the string input \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+cstring C string read from stdin. Needs to be freed manually 
+\end{DoxyReturn}
+\mbox{\Hypertarget{consoleio_8h_a997e458e68212cb2b70b5256757cacb6}\label{consoleio_8h_a997e458e68212cb2b70b5256757cacb6}} 
+\index{consoleio.h@{consoleio.h}!c\_set\_cursor@{c\_set\_cursor}}
+\index{c\_set\_cursor@{c\_set\_cursor}!consoleio.h@{consoleio.h}}
+\doxysubsubsection{\texorpdfstring{c\_set\_cursor()}{c\_set\_cursor()}}
+{\footnotesize\ttfamily void c\+\_\+set\+\_\+cursor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tdef_8h_acbd4acd0d29e2d6c43104827f77d9cd2}{uint32}}}]{x,  }\item[{\mbox{\hyperlink{tdef_8h_acbd4acd0d29e2d6c43104827f77d9cd2}{uint32}}}]{y }\end{DoxyParamCaption})}
+
+
+
+Sets the cursor position to (y$\vert$x) where x=column, y=row. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Target column for the cursor \\
+\hline
+{\em y} & Target row for the cursor \\
+\hline
+\end{DoxyParams}
