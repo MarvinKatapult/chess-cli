@@ -91,11 +91,11 @@ int c_scan( cstring p_format, ... ) {
  * 
  * @return cstring C string read from stdin. Needs to be freed manually
  */
-cstring c_scan_string( void ) {
+string c_scan_string( void ) {
     return c_scan_string_size( IN_STRING_SIZE );
 }
 
-cstring c_scan_string_size( uint32 p_intput_size ) {
+string c_scan_string_size( uint32 p_intput_size ) {
     string in = (string)malloc( sizeof(char) * p_intput_size );
     int result = c_scan( "%s", in );
     if ( result != 0)
