@@ -1,2 +1,6 @@
 gcc -Wall src/main.c src/board.c src/square.c src/consoleio.c -Iinclude -o chess
-doxygen
+if [ "$1" = "-D" ]; 
+then
+    echo "Generating Doxygen Documentation"
+    doxygen
+fi
