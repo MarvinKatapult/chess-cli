@@ -6,6 +6,14 @@
 #include <stdarg.h>
 
 /**
+ * @brief Sets the cursor position to (y|x) where x=column, y=row
+ * 
+ * @param x Target column for the cursor
+ * @param y Target row for the cursor
+ */
+void c_set_cursor( uint32 x, uint32 y );
+
+/**
  * @brief Clears the console buffer.
  */
 void c_clear( void );

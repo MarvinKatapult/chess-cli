@@ -1,10 +1,24 @@
 #include "consoleio.h"
 
+#define ANSI_CONTROL_CLEAR "\033[2J"
+#define ANSI_CONTROL_CPOS "\033[%d;%dH"
+
+/**
+ * @brief Sets the cursor position to (y|x) where x=column, y=row
+ * 
+ * @param x Target column for the cursor
+ * @param y Target row for the cursor
+ */
+void c_set_cursor( uint32 p_x, uint32 p_y ) {
+    c_print( ANSI_CONTROL_CPOS, p_y, p_x );
+}
+
 /**
  * @brief Clears the console buffer.
  */
 void c_clear( void ) {
-    printf("\033[2J");
+    c_print( ANSI_CONTROL_CLEAR );
+    c_set_cursor( 0, 0 );
 }
 
 /**

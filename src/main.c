@@ -18,5 +18,11 @@ int main( int argc, string_array argv ) {
     boardInit( &board );
     fromString( &board, board_string );
 
+    printBoard( &board );
+
+    movePiece( &board, 3, 6, 3, 4 );
+
+    printBoard( &board );
+
     return 0;
 }
