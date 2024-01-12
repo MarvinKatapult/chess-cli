@@ -1,1 +1,7 @@
-asd
+Moves via Chess notations:
+- Field+? = check possible moves for the chess piece on the field
+- castling = check out notation for it
+
+Input parsing + Gameloop;
+
+Darstellung = 2/3 links Spielfeld, 1/3 rechts notation log
