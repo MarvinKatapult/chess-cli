@@ -8,7 +8,7 @@
 /**
  * @brief Default max size of the string input
  */
-#define IN_STRING_SIZE 32
+#define IN_STRING_SIZE 80
 
 /**
  * @brief Sets the cursor position to (y|x) where x=column, y=row
@@ -62,7 +62,7 @@ int c_scan( cstring format, ... );
  * 
  * @return cstring C string read from stdin. Needs to be freed manually
  */
-cstring c_scan_string( void );
+string c_scan_string( void );
 
 /**
  * @brief Reads data from stdin and returns the input as a const string with max size of intput_size
@@ -70,5 +70,5 @@ cstring c_scan_string( void );
  * @param input_size Max size of the string input
  * @return cstring C string read from stdin. Needs to be freed manually
  */
-cstring c_scan_string_size( uint32 input_size );
+string c_scan_string_size( uint32 input_size );
 #endif // _CONSOLEIO_H_
