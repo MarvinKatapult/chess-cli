@@ -1,24 +1,35 @@
 #include <piece.h>
-#include <stdlib.h>
 
 /**
- * @brief Initializes a Movelist with a given size (Maybe just use MAX_NUMBER_MOVES)
- * @param moves MoveList Instance
- * @param size Number of Moves fit in the list
+ * @brief Returns if piece is same color as specified 
+ * @param piece Piece
+ * @param color Color
+ * @return true, if piece is same color as color
  */
-void initMoveList( MoveList * p_moves, uint32 p_count ) {
-    p_moves->moves = (Move *)malloc( sizeof( Move ) * p_count );
-    p_moves->count_moves = 0;
+bool isPieceColor( char p, PieceColors p_color ) {
+    if ( p_color == WHITE ) {
+        return ( p == WHITE_PAWN   || p == WHITE_KNIGHT
+            || p == WHITE_BISHOP || p == WHITE_ROOK
+            || p == WHITE_QUEEN  || p == WHITE_KING );
+    } else if ( p_color == BLACK ) {
+        return ( p == BLACK_PAWN   || p == BLACK_KNIGHT
+            || p == BLACK_BISHOP || p == BLACK_ROOK
+            || p == BLACK_QUEEN  || p == BLACK_KING );
+    }
+
+    return false;
 }
 
 /**
- * @brief Wrapper for adding move to a movelist
- *        also increments count in MoveList
- * @param moves MoveList Instance
- * @param move Move to add
- * @param index Position where to store move
+ * @brief Returns if char is symbol of a piece
+ * @param p Char to check
+ * @return true, if is piece, otherwise false
  */
-void addMove( MoveList * p_moves, Move p_move, uint32 p_index ) {
-    p_moves->count_moves++;
-    p_moves->moves[p_index] = p_move;
+bool isPiece( ColoredPieces p ) {
+    return ( p == WHITE_PAWN   || p == BLACK_PAWN
+          || p == WHITE_KNIGHT || p == BLACK_KNIGHT
+          || p == WHITE_BISHOP || p == BLACK_BISHOP
+          || p == WHITE_ROOK   || p == BLACK_ROOK
+          || p == WHITE_QUEEN  || p == BLACK_QUEEN
+          || p == WHITE_KING   || p == BLACK_KING );
 }

@@ -1,6 +1,8 @@
 #ifndef __BOARD__
 #define __BOARD__
 
+#include <piece.h>
+
 #include <stdio.h>
 #include <square.h>
 #include <tdef.h>
@@ -23,22 +25,6 @@ typedef struct s_Board {
     Square squares[COUNT_SQUARES_PER_ROW][COUNT_SQUARES_PER_ROW];
 
 } Board;
-
-typedef enum {
-    WHITE_PAWN = 'P',
-    WHITE_KNIGHT = 'N',
-    WHITE_BISHOP = 'B',
-    WHITE_ROOK = 'R',
-    WHITE_QUEEN = 'Q',
-    WHITE_KING = 'K',
-
-    BLACK_PAWN = 'p',
-    BLACK_KNIGHT = 'n',
-    BLACK_BISHOP = 'b',
-    BLACK_ROOK = 'r',
-    BLACK_QUEEN = 'q',
-    BLACK_KING = 'k'
-} Pieces;
 
 /**
  * @brief Initiates the Board
@@ -78,12 +64,5 @@ bool movePieceWithNotation( Board * board, cstring move );
  * @return true, if move was legal
  */
 bool movePieceNoCheck( Board * board, uint32 x1, uint32 y1, uint32 x2, uint32 y2 );
-
-/**
- * @brief Returns if char is symbol of a piece
- * @param possible_piece Char to check
- * @return true, if is piece, otherwise false
- */
-bool isPiece( char possible_piece );
 
 #endif // __BOARD__

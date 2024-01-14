@@ -135,17 +135,3 @@ bool movePieceNoCheck( Board * p_board, uint32 p_x1, uint32 p_y1, uint32 p_x2, u
 
     return true;
 }
-
-/**
- * @brief Returns if char is symbol of a piece
- * @param p Char to check
- * @return true, if is piece, otherwise false
- */
-bool isPiece( char p ) {
-    return ( p == WHITE_PAWN   || p == BLACK_PAWN
-          || p == WHITE_KNIGHT || p == BLACK_KNIGHT
-          || p == WHITE_BISHOP || p == BLACK_BISHOP
-          || p == WHITE_ROOK   || p == BLACK_ROOK
-          || p == WHITE_QUEEN  || p == BLACK_QUEEN
-          || p == WHITE_KING   || p == BLACK_KING );
-}

@@ -2,6 +2,23 @@
 #define __PIECE__
 
 #include <tdef.h>
+#include <stdlib.h>
+
+typedef enum {
+    WHITE_PAWN   = 'P',
+    WHITE_KNIGHT = 'N',
+    WHITE_BISHOP = 'B',
+    WHITE_ROOK   = 'R',
+    WHITE_QUEEN  = 'Q',
+    WHITE_KING   = 'K',
+
+    BLACK_PAWN   = 'p',
+    BLACK_KNIGHT = 'n',
+    BLACK_BISHOP = 'b',
+    BLACK_ROOK   = 'r',
+    BLACK_QUEEN  = 'q',
+    BLACK_KING   = 'k'
+} ColoredPieces;
 
 typedef enum {
     PAWN = 0,
@@ -12,35 +29,24 @@ typedef enum {
     KING
 } Pieces;
 
-typedef struct {
-    uint32 start_x;
-    uint32 start_y;
-    uint32 dest_x;
-    uint32 dest_y;
-    char piece;
-} Move;
-
-typedef struct {
-    uint32 count_moves;
-    Move * moves;
-    #define MAX_NUMBER_MOVES    27
-} MoveList;
+typedef enum {
+    WHITE = 0,
+    BLACK
+} PieceColors;
 
 /**
- * @brief Initializes a Movelist with a given size (Maybe just use MAX_NUMBER_MOVES)
- * @param moves MoveList Instance
- * @param size Number of Moves fit in the list
+ * @brief Returns if piece is same color as specified 
+ * @param piece Piece
+ * @param color Color
+ * @return true, if piece is same color as color
  */
-void initMoveList( MoveList * moves, uint32 count );
+bool isPieceColor( char piece, PieceColors color );
 
 /**
- * @brief Wrapper for adding move to a movelist
- *        also increments count in MoveList
- * @param moves MoveList Instance
- * @param move Move to add
- * @param index Position where to store move
+ * @brief Returns if char is symbol of a piece
+ * @param piece Char to check
+ * @return true, if is piece, otherwise false
  */
-void addMove( MoveList * moves, Move move, uint32 index );
-
+bool isPiece( ColoredPieces piece );
 
 #endif

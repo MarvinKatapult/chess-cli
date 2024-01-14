@@ -7,10 +7,7 @@
 int main( int argc, string_array argv ) {
     
     // TODO Pass fenstring as Argument with --fen or -f
-    
     string board_string;
-
-    c_clear();
 
     // If no starting postition is passed, use default starting position
     if ( argc < 2 ) {
