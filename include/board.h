@@ -56,8 +56,9 @@ void fromString( Board * board, cstring fen_string );
 /**
  * @brief Prints the chessboard to the screen
  * @param board Board
+ * @param clear_screen Clears the screen when set to true
  */
-void printBoard( Board * board );
+void printBoard( Board * board, bool clear_screen );
 
 /**
  * @brief Moves a Piece on Board with the common chess notation
@@ -68,7 +69,7 @@ void printBoard( Board * board );
 bool movePieceWithNotation( Board * board, cstring move );
 
 /**
- * @brief Moves a Piece on Board from x1 and y1 to x2 and y2
+ * @brief Moves a Piece on Board from x1 and y1 to x2 and y2 (With no check for legality)
  * @param board Board
  * @param x1 X1
  * @param y1 Y1
@@ -76,7 +77,7 @@ bool movePieceWithNotation( Board * board, cstring move );
  * @param y2 Y2
  * @return true, if move was legal
  */
-bool movePiece( Board * board, uint32 x1, uint32 y1, uint32 x2, uint32 y2 );
+bool movePieceNoCheck( Board * board, uint32 x1, uint32 y1, uint32 x2, uint32 y2 );
 
 /**
  * @brief Returns if char is symbol of a piece

@@ -69,10 +69,10 @@ void fromString( Board * p_board, cstring p_fen_string ) {
  * @brief Prints the chessboard to the screen
  * @param board Board
  */
-void printBoard( Board * p_board ) {
+void printBoard( Board * p_board, bool p_clear_screen ) {
 
     // Clear the screen
-    c_clear();
+    if ( p_clear_screen ) c_clear();
 
     // Print Board
     for ( uint32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
@@ -114,7 +114,7 @@ bool movePieceWithNotation( Board * board, cstring move ) {
 }
 
 /**
- * @brief Moves a Piece on Board from x1 and y1 to x2 and y2
+ * @brief Moves a Piece on Board from x1 and y1 to x2 and y2 (With no check for legality)
  * @param board Board
  * @param x1 X1
  * @param y1 Y1
@@ -122,11 +122,14 @@ bool movePieceWithNotation( Board * board, cstring move ) {
  * @param y2 Y2
  * @return true, if move was successful
  */
-bool movePiece( Board * p_board, uint32 p_x1, uint32 p_y1, uint32 p_x2, uint32 p_y2 ) {
+bool movePieceNoCheck( Board * p_board, uint32 p_x1, uint32 p_y1, uint32 p_x2, uint32 p_y2 ) {
+    // Get Piece to move
     char piece_to_move = p_board->squares[p_y1][p_x1].piece;
     if ( piece_to_move == ' ' ) return false;
-    // TODO Need to check for same colored piece
+
+    // Move Piece
     p_board->squares[p_y2][p_x2].piece = piece_to_move;
+
     // Delete Trailing Piece
     p_board->squares[p_y1][p_x1].piece = ' ';
 
