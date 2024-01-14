@@ -1,6 +1,9 @@
 #ifndef __MOVE__
 #define __MOVE__
 
+#include <tdef.h>
+#include <stdlib.h>
+
 typedef struct {
     uint32 start_x;
     uint32 start_y;
