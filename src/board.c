@@ -92,6 +92,7 @@ void printBoard( Board * p_board ) {
  */
 bool movePieceWithNotation( Board * board, cstring move ) {
 
+    // Getting first char
     char current_char = move[0];
     if ( current_char == '0' ) {
         // CASTLING
