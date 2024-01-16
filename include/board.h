@@ -20,7 +20,7 @@
 // Checks if X is a-h
 #define IS_CHESS_COL( X )  ( X >= 97 && X <= 104 )
 
-typedef struct s_Board {
+typedef struct {
 
     Square squares[COUNT_SQUARES_PER_ROW][COUNT_SQUARES_PER_ROW];
 

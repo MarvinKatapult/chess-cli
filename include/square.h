@@ -4,7 +4,7 @@
 #define WHITE_SQUARE   0
 #define BLACK_SQUARE   1
 
-typedef struct s_Square {
+typedef struct {
     char piece;
     unsigned int x;
     unsigned int y;
