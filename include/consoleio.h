@@ -63,7 +63,7 @@ void c_fprint( FILE * stream, cstring format, ... );
  * @param ... Additional arguments to store the imput
  * @return * int On Success, the function returns the number of items of the argument list successfully filled.
  */
-int c_scan( cstring format, ... );
+int32 c_scan( cstring format, ... );
 
 /**
  * @brief Reads data from stdin and returns the input as a const string with max size of IN_STRING_SIZE
