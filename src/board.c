@@ -1,7 +1,7 @@
 #include <board.h>
 
 /**
- * @brief Initiatlizes the Board
+ * @brief Initiatlizes the Board with an empty field
  * @param board Board
  */
 void boardInit( Board * p_board ) {
@@ -17,8 +17,7 @@ void boardInit( Board * p_board ) {
             // Set x and y position
             square->x = x;
             square->y = y;
-
-            square->piece = ' ';
+            square->piece = 0L;
         }
     }
 }
@@ -30,14 +29,13 @@ void boardInit( Board * p_board ) {
  */
 void fromString( Board * p_board, cstring p_fen_string ) {
 
-    // Go through fenstring
     uint32 square_index = 0;
     uint32 char_index = 0; 
-
     char current_char = '0';
+
+    // Go through fenstring
     while ( current_char != '\0' ) {
         current_char = p_fen_string[char_index++]; 
-        printf( "%c", current_char );
 
         // Skip / 
         if ( current_char == '/' )
@@ -57,8 +55,14 @@ void fromString( Board * p_board, cstring p_fen_string ) {
 
         // If current char is alpha read piece
         if ( isalpha( current_char ) ) {
-            // TODO Wrong Need to refactor
-            p_board->squares[y_index][x_index].piece = current_char;
+            // Create New Piece
+            Piece * piece = malloc( sizeof( Piece ) );
+            Square * square = &p_board->squares[y_index][x_index];
+            initPiece( piece, square, p_board );
+            piece->symbol = current_char;
+
+            // Add Piece to square
+            square->piece = piece;
             square_index++; 
             continue;
         } 
@@ -69,18 +73,22 @@ void fromString( Board * p_board, cstring p_fen_string ) {
  * @brief Prints the chessboard to the screen
  * @param board Board
  */
-void printBoard( Board * p_board ) {
+void printBoard( Board * p_board, bool p_clear_screen ) {
 
     // Clear the screen
-    c_clear();
+    if ( p_clear_screen ) c_clear();
 
     // Print Board
     for ( uint32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
         for ( uint32 x = 0; x < COUNT_SQUARES_PER_ROW; x++ ) {
-            c_print( "%c ", p_board->squares[y][x].piece );
+            Piece * piece = p_board->squares[y][x].piece;
+            if ( piece != 0L ) c_print( "%c|", piece->symbol );
+            else
+                // Only print | if not on last Column
+                c_print( " |" ); 
         }
         // At the end of line, do linebreak
-        printf( "\n" );
+        printf( "\n----------------\n" );
     }
 }
 
@@ -92,6 +100,7 @@ void printBoard( Board * p_board ) {
  */
 bool movePieceWithNotation( Board * board, cstring move ) {
 
+    // Getting first char
     char current_char = move[0];
     if ( current_char == '0' ) {
         // CASTLING
@@ -113,7 +122,7 @@ bool movePieceWithNotation( Board * board, cstring move ) {
 }
 
 /**
- * @brief Moves a Piece on Board from x1 and y1 to x2 and y2
+ * @brief Moves a Piece on Board from x1 and y1 to x2 and y2 (With no check for legality)
  * @param board Board
  * @param x1 X1
  * @param y1 Y1
@@ -121,27 +130,17 @@ bool movePieceWithNotation( Board * board, cstring move ) {
  * @param y2 Y2
  * @return true, if move was successful
  */
-bool movePiece( Board * p_board, uint32 p_x1, uint32 p_y1, uint32 p_x2, uint32 p_y2 ) {
-    char piece_to_move = p_board->squares[p_y1][p_x1].piece;
-    if ( piece_to_move == ' ' ) return false;
-    // TODO Need to check for same colored piece
-    p_board->squares[p_y2][p_x2].piece = piece_to_move;
-    // Delete Trailing Piece
-    p_board->squares[p_y1][p_x1].piece = ' ';
+bool movePieceNoCheck( Board * p_board, uint32 p_x1, uint32 p_y1, uint32 p_x2, uint32 p_y2 ) {
+    // Get Piece to move
+    Square * start_square = &p_board->squares[p_y1][p_x1];
+    Square * dest_square  = &p_board->squares[p_y2][p_x2];
+
+    Piece * piece = start_square->piece;
+    if ( piece == 0L ) return false;
+
+    // Move Piece
+    dest_square->piece = piece;
+    start_square->piece = 0L;
 
     return true;
-}
-
-/**
- * @brief Returns if char is symbol of a piece
- * @param p Char to check
- * @return true, if is piece, otherwise false
- */
-bool isPiece( char p ) {
-    return ( p == WHITE_PAWN   || p == BLACK_PAWN
-          || p == WHITE_KNIGHT || p == BLACK_KNIGHT
-          || p == WHITE_BISHOP || p == BLACK_BISHOP
-          || p == WHITE_ROOK   || p == BLACK_ROOK
-          || p == WHITE_QUEEN  || p == BLACK_QUEEN
-          || p == WHITE_KING   || p == BLACK_KING );
 }

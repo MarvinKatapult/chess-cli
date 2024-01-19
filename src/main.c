@@ -7,16 +7,11 @@
 int main( int argc, string_array argv ) {
     
     // TODO Pass fenstring as Argument with --fen or -f
-    
     string board_string;
-
-    c_clear();
 
     // If no starting postition is passed, use default starting position
     if ( argc < 2 ) {
-        c_print( "Please enter a fenstring:\n" );
-        board_string = c_scan_string();
-        c_clear();
+        board_string = DEFAULT_POSITION_FEN;
     }
     else board_string = argv[1];
 
@@ -25,13 +20,14 @@ int main( int argc, string_array argv ) {
     boardInit( &board );
     fromString( &board, board_string );
 
-    c_print( "_______________\n" );
-    string move = c_scan_string();
+    printBoard( &board, false );
 
-    c_clear();
-    printBoard( &board );
-    c_print( "_______________\n" );
-    c_print( "You entered: %s\n", move );
+    movePieceNoCheck( &board, 3, 6, 3, 4 );
+    movePieceNoCheck( &board, 1, 7, 2, 5 );
+
+    printf( "\n\n" );
+
+    printBoard( &board, false );
 
     return 0;
 }
