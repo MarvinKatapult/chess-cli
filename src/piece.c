@@ -1,6 +1,16 @@
 #include <piece.h>
 
 /**
+ * @brief Initializes Piece
+ */
+void initPiece( Piece * p_piece, Square * p_square, Board * p_board ) {
+    p_piece->symbol = ' ';
+    p_piece->last_move = 0L;
+    p_piece->board = p_board;
+    p_piece->square = p_square;
+}
+
+/**
  * @brief Returns if piece is same color as specified 
  * @param piece Piece
  * @param color Color

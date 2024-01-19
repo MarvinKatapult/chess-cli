@@ -1,8 +1,22 @@
 #ifndef __PIECE__
 #define __PIECE__
 
+// #include <board.h>
+#include <move.h>
+
 #include <tdef.h>
 #include <stdlib.h>
+
+typedef struct s_Board Board;
+typedef struct s_Square Square;
+
+typedef struct s_Piece {
+    char symbol;
+    Move * last_move;
+    Board * board;
+    Square * square;
+} Piece;
+
 
 typedef enum {
     WHITE_PAWN   = 'P',
@@ -33,6 +47,13 @@ typedef enum {
     WHITE = 0,
     BLACK
 } PieceColors;
+
+/**
+ * @brief Initializes Piece
+ * @param piece Piece
+ * @param board Board of Piece
+ */
+void initPiece( Piece * piece, Square * square, Board * board );
 
 /**
  * @brief Returns if piece is same color as specified 

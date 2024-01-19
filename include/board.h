@@ -1,13 +1,13 @@
 #ifndef __BOARD__
 #define __BOARD__
 
+#include <square.h>
 #include <piece.h>
 
-#include <stdio.h>
-#include <square.h>
 #include <tdef.h>
 #include <consoleio.h>
 
+#include <stdio.h>
 #include <stdbool.h>
 #include <ctype.h>
 #include <stdlib.h>
@@ -15,19 +15,21 @@
 #define COUNT_BOARD_SQUARES        64
 #define COUNT_SQUARES_PER_ROW      8
 
-#define STARTING_FEN_STRING        "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
+#define DEFAULT_POSITION_FEN        "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
 
 // Checks if X is a-h
 #define IS_CHESS_COL( X )  ( X >= 97 && X <= 104 )
 
-typedef struct {
+typedef struct s_Piece Piece;
+
+typedef struct s_Board {
 
     Square squares[COUNT_SQUARES_PER_ROW][COUNT_SQUARES_PER_ROW];
 
 } Board;
 
 /**
- * @brief Initiates the Board
+ * @brief Initiatlizes the Board with an empty field
  * @param board Board
  */
 void boardInit( Board * board );
