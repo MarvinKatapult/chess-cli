@@ -1,8 +1,6 @@
 #include <piece.h>
 #include <ctype.h>
 
-#include <stdio.h> // TODO
-
 /**
  * @brief Initializes Piece
  */
@@ -20,7 +18,6 @@ void initPiece( Piece * p_piece, char p_symbol, Square * p_square, Board * p_boa
  * @return color Piececolor
  */
 PieceColors getColorForPiece( const Piece * p_piece ) {
-    printf( "symbol:%c\n", p_piece->symbol );
     if ( p_piece == 0L ) return NONE;
     if ( isupper( p_piece->symbol ) != 0 ) return WHITE;
     else return BLACK; 
