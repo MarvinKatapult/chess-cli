@@ -13,6 +13,10 @@ Dependencies:
 Just start the build.sh script. If you want to generate Doxygen documentation
 start the script with the -D flag (Doxygen needs to be preinstalled on the system)
 
+### Windows
+
+TODO
+
 # The Idea
 
 Chess-cli is supposed to be a all around chess playing experience
