@@ -3,6 +3,7 @@ Chess in a command line interface
 
 # How to build
 - Linux
+
 Dependencies:
     - gcc
     - (Doxygen)
