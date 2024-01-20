@@ -78,9 +78,13 @@ void printBoard( Board * p_board, bool p_clear_screen ) {
     // Clear the screen
     if ( p_clear_screen ) c_clear();
 
-    // Print Board
+    c_print( " --Chess Board--" );
+    c_print( "\n-----------------\n" );
+    // Print Boar
     for ( uint32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
         for ( uint32 x = 0; x < COUNT_SQUARES_PER_ROW; x++ ) {
+            if ( x == 0 ) c_print( "|" );
+
             Piece * piece = p_board->squares[y][x].piece;
             if ( piece != 0L ) c_print( "%c|", piece->symbol );
             else
@@ -88,7 +92,7 @@ void printBoard( Board * p_board, bool p_clear_screen ) {
                 c_print( " |" ); 
         }
         // At the end of line, do linebreak
-        printf( "\n----------------\n" );
+        c_print( "\n-----------------\n" );
     }
 }
 
