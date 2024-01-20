@@ -155,6 +155,7 @@ bool movePieceNoCheck( Board * p_board, uint32 p_x1, uint32 p_y1, uint32 p_x2, u
 
     // Move Piece
     dest_square->piece = piece;
+    piece->square = dest_square;
     start_square->piece = 0L;
 
     return true;
