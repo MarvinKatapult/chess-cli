@@ -10,11 +10,18 @@
 typedef struct s_Board Board;
 typedef struct s_Square Square;
 
+typedef enum {
+    NONE = 0,
+    WHITE,
+    BLACK
+} PieceColors;
+
 typedef struct s_Piece {
     char symbol;
     Move * last_move;
     Board * board;
     Square * square;
+    PieceColors color;
 } Piece;
 
 
@@ -43,11 +50,6 @@ typedef enum {
     KING
 } Pieces;
 
-typedef enum {
-    WHITE = 0,
-    BLACK
-} PieceColors;
-
 /**
  * @brief Initializes Piece
  * @param piece Piece
@@ -56,12 +58,11 @@ typedef enum {
 void initPiece( Piece * piece, Square * square, Board * board );
 
 /**
- * @brief Returns if piece is same color as specified 
+ * @brief Returns color for piece piece
  * @param piece Piece
- * @param color Color
- * @return true, if piece is same color as color
+ * @return color Piececolor
  */
-bool isPieceColor( char piece, PieceColors color );
+PieceColors getColorForPiece( const Piece * piece );
 
 /**
  * @brief Returns if char is symbol of a piece

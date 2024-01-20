@@ -1,4 +1,5 @@
 #include <piece.h>
+#include <ctype.h>
 
 /**
  * @brief Initializes Piece
@@ -8,26 +9,19 @@ void initPiece( Piece * p_piece, Square * p_square, Board * p_board ) {
     p_piece->last_move = 0L;
     p_piece->board = p_board;
     p_piece->square = p_square;
+    p_piece->color = getColorForPiece( p_piece );
 }
 
 /**
- * @brief Returns if piece is same color as specified 
+ * @brief Returns color for piece piece
  * @param piece Piece
- * @param color Color
- * @return true, if piece is same color as color
+ * @return color Piececolor
  */
-bool isPieceColor( char p, PieceColors p_color ) {
-    if ( p_color == WHITE ) {
-        return ( p == WHITE_PAWN   || p == WHITE_KNIGHT
-            || p == WHITE_BISHOP || p == WHITE_ROOK
-            || p == WHITE_QUEEN  || p == WHITE_KING );
-    } else if ( p_color == BLACK ) {
-        return ( p == BLACK_PAWN   || p == BLACK_KNIGHT
-            || p == BLACK_BISHOP || p == BLACK_ROOK
-            || p == BLACK_QUEEN  || p == BLACK_KING );
-    }
-
-    return false;
+PieceColors getColorForPiece( const Piece * p_piece ) {
+    if ( p_piece == 0L ) return NONE;
+    int symbol = p_piece->symbol;
+    if ( islower( symbol ) > 0 ) return BLACK;
+    else return WHITE; 
 }
 
 /**

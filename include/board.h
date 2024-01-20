@@ -49,6 +49,16 @@ void fromString( Board * board, cstring fen_string );
 void printBoard( Board * board, bool clear_screen );
 
 /**
+ * @brief Get Piece from board with x and y
+ *        If the field is empty return 0L
+ * @param board Board
+ * @param x X
+ * @param y Y
+ * @return piece Piece
+ */
+Piece * getPiece( const Board * board, uint32 x, uint32 y );
+
+/**
  * @brief Moves a Piece on Board with the common chess notation
  * @param board Board
  * @param move Move e.g. "exd5"

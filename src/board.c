@@ -78,12 +78,12 @@ void printBoard( Board * p_board, bool p_clear_screen ) {
     // Clear the screen
     if ( p_clear_screen ) c_clear();
 
-    c_print( " --Chess Board--" );
-    c_print( "\n-----------------\n" );
+    c_print( "   --Chess Board--\n" );
+    c_print( "  -----------------\n" );
     // Print Boar
     for ( uint32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
         for ( uint32 x = 0; x < COUNT_SQUARES_PER_ROW; x++ ) {
-            if ( x == 0 ) c_print( "|" );
+            if ( x == 0 ) c_print( "%d  |", y );
 
             Piece * piece = p_board->squares[y][x].piece;
             if ( piece != 0L ) c_print( "%c|", piece->symbol );
@@ -92,8 +92,20 @@ void printBoard( Board * p_board, bool p_clear_screen ) {
                 c_print( " |" ); 
         }
         // At the end of line, do linebreak
-        c_print( "\n-----------------\n" );
+        c_print( "\n   -----------------\n" );
+        if ( y == COUNT_SQUARES_PER_ROW - 1 ) c_print( "    0 1 2 3 4 5 6 7\n" );
     }
+}
+
+/**
+ * @brief Get Piece from board with x and y
+ * @param board Board
+ * @param x X
+ * @param y Y
+ * @return piece Piece
+ */
+Piece * getPiece( const Board * p_board, uint32 p_x, uint32 p_y ) {
+    return p_board->squares[p_y][p_x].piece;
 }
 
 /**

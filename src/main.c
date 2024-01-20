@@ -20,14 +20,16 @@ int main( int argc, string_array argv ) {
     boardInit( &board );
     fromString( &board, board_string );
 
-    printBoard( &board, false );
-
     movePieceNoCheck( &board, 3, 6, 3, 4 );
     movePieceNoCheck( &board, 1, 7, 2, 5 );
 
     printf( "\n\n" );
 
     printBoard( &board, false );
+
+    Piece * piece = getPiece( &board, 2, 5 );
+    if ( piece != 0L )
+    c_print( "Piece on square:%d;%d; is Color %s\n", 2, 5, piece->color == BLACK ? "Black" : "White" );
 
     return 0;
 }
