@@ -29,7 +29,11 @@ int main( int argc, string_array argv ) {
 
     Piece * piece = getPiece( &board, 2, 5 );
     if ( piece != 0L )
-    c_print( "Piece on square:%d;%d; is Color %s\n", 2, 5, piece->color == BLACK ? "Black" : "White" );
+    c_print( "Piece on square:%d;%d; is Color %s\n", piece->square->x, piece->square->y, piece->color == BLACK ? "Black" : "White" );
+
+    piece = getPiece( &board, 0, 0 );
+    if ( piece != 0L )
+    c_print( "Piece on square:%d;%d; is Color %s\n", piece->square->x, piece->square->y, piece->color == BLACK ? "Black" : "White" );
 
     return 0;
 }

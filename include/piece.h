@@ -55,7 +55,7 @@ typedef enum {
  * @param piece Piece
  * @param board Board of Piece
  */
-void initPiece( Piece * piece, Square * square, Board * board );
+void initPiece( Piece * piece, char symbol, Square * square, Board * board );
 
 /**
  * @brief Returns color for piece piece

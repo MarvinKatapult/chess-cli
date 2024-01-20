@@ -58,8 +58,7 @@ void fromString( Board * p_board, cstring p_fen_string ) {
             // Create New Piece
             Piece * piece = malloc( sizeof( Piece ) );
             Square * square = &p_board->squares[y_index][x_index];
-            initPiece( piece, square, p_board );
-            piece->symbol = current_char;
+            initPiece( piece, current_char, square, p_board );
 
             // Add Piece to square
             square->piece = piece;
@@ -78,7 +77,7 @@ void printBoard( Board * p_board, bool p_clear_screen ) {
     // Clear the screen
     if ( p_clear_screen ) c_clear();
 
-    c_print( "   --Chess Board--\n" );
+    c_print( "    --Chess Board--\n" );
     c_print( "  -----------------\n" );
     // Print Boar
     for ( uint32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {

@@ -1,11 +1,13 @@
 #include <piece.h>
 #include <ctype.h>
 
+#include <stdio.h> // TODO
+
 /**
  * @brief Initializes Piece
  */
-void initPiece( Piece * p_piece, Square * p_square, Board * p_board ) {
-    p_piece->symbol = ' ';
+void initPiece( Piece * p_piece, char p_symbol, Square * p_square, Board * p_board ) {
+    p_piece->symbol = p_symbol;
     p_piece->last_move = 0L;
     p_piece->board = p_board;
     p_piece->square = p_square;
@@ -18,10 +20,10 @@ void initPiece( Piece * p_piece, Square * p_square, Board * p_board ) {
  * @return color Piececolor
  */
 PieceColors getColorForPiece( const Piece * p_piece ) {
+    printf( "symbol:%c\n", p_piece->symbol );
     if ( p_piece == 0L ) return NONE;
-    int symbol = p_piece->symbol;
-    if ( islower( symbol ) > 0 ) return BLACK;
-    else return WHITE; 
+    if ( isupper( p_piece->symbol ) != 0 ) return WHITE;
+    else return BLACK; 
 }
 
 /**
