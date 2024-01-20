@@ -58,8 +58,7 @@ void fromString( Board * p_board, cstring p_fen_string ) {
             // Create New Piece
             Piece * piece = malloc( sizeof( Piece ) );
             Square * square = &p_board->squares[y_index][x_index];
-            initPiece( piece, square, p_board );
-            piece->symbol = current_char;
+            initPiece( piece, current_char, square, p_board );
 
             // Add Piece to square
             square->piece = piece;
@@ -78,9 +77,13 @@ void printBoard( Board * p_board, bool p_clear_screen ) {
     // Clear the screen
     if ( p_clear_screen ) c_clear();
 
-    // Print Board
+    c_print( "    --Chess Board--\n" );
+    c_print( "  -----------------\n" );
+    // Print Boar
     for ( uint32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
         for ( uint32 x = 0; x < COUNT_SQUARES_PER_ROW; x++ ) {
+            if ( x == 0 ) c_print( "%d  |", y );
+
             Piece * piece = p_board->squares[y][x].piece;
             if ( piece != 0L ) c_print( "%c|", piece->symbol );
             else
@@ -88,8 +91,20 @@ void printBoard( Board * p_board, bool p_clear_screen ) {
                 c_print( " |" ); 
         }
         // At the end of line, do linebreak
-        printf( "\n----------------\n" );
+        c_print( "\n   -----------------\n" );
+        if ( y == COUNT_SQUARES_PER_ROW - 1 ) c_print( "    0 1 2 3 4 5 6 7\n" );
     }
+}
+
+/**
+ * @brief Get Piece from board with x and y
+ * @param board Board
+ * @param x X
+ * @param y Y
+ * @return piece Piece
+ */
+Piece * getPiece( const Board * p_board, uint32 p_x, uint32 p_y ) {
+    return p_board->squares[p_y][p_x].piece;
 }
 
 /**
@@ -140,6 +155,7 @@ bool movePieceNoCheck( Board * p_board, uint32 p_x1, uint32 p_y1, uint32 p_x2, u
 
     // Move Piece
     dest_square->piece = piece;
+    piece->square = dest_square;
     start_square->piece = 0L;
 
     return true;

@@ -4,6 +4,16 @@
 #include <tdef.h>
 #include <consoleio.h>
 
+// TODO: Remove
+bool printColor( Piece * p_piece ) {
+    if ( p_piece != 0L ) {
+        c_print( "Piece on square:%d;%d; is Color %s\n", p_piece->square->x, p_piece->square->y, p_piece->color == BLACK ? "Black" : "White" );
+        return true;
+    }
+    c_print( "printColor: No piece on square\n" );
+    return false;
+}
+
 int main( int argc, string_array argv ) {
     
     // TODO Pass fenstring as Argument with --fen or -f
@@ -20,14 +30,17 @@ int main( int argc, string_array argv ) {
     boardInit( &board );
     fromString( &board, board_string );
 
-    printBoard( &board, false );
-
     movePieceNoCheck( &board, 3, 6, 3, 4 );
     movePieceNoCheck( &board, 1, 7, 2, 5 );
 
-    printf( "\n\n" );
-
     printBoard( &board, false );
+
+    printColor( getPiece( &board, 2, 2 ) );
+    printColor( getPiece( &board, 1, 1 ) );
+    printColor( getPiece( &board, 2, 7 ) );
+    printColor( getPiece( &board, 2, 7 ) );
+    printColor( getPiece( &board, 3, 4 ) );
+    printColor( getPiece( &board, 2, 6 ) );
 
     return 0;
 }
