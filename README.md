@@ -2,11 +2,11 @@
 Chess in a command line interface
 
 # How to build
-- Linux
-
+Linux
 Dependencies:
     - gcc
     - (Doxygen)
+
 Just start the build.sh script. If you want to generate Doxygen documentation
 start the script with the -D flag (Doxygen needs to be preinstalled on the system)
 
