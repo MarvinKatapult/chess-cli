@@ -87,7 +87,6 @@ void printBoard( Board * p_board, bool p_clear_screen ) {
             Piece * piece = p_board->squares[y][x].piece;
             if ( piece != 0L ) c_print( "%c|", piece->symbol );
             else
-                // Only print | if not on last Column
                 c_print( " |" ); 
         }
         // At the end of line, do linebreak
@@ -108,35 +107,6 @@ Piece * getPiece( const Board * p_board, uint32 p_x, uint32 p_y ) {
 }
 
 /**
- * @brief Moves a Piece on Board with the common chess notation
- * @param board Board
- * @param move Move e.g. "exd5"
- * @return true, if move was legal
- */
-bool movePieceWithNotation( Board * board, cstring move ) {
-
-    // Getting first char
-    char current_char = move[0];
-    if ( current_char == '0' ) {
-        // CASTLING
-        // CHECK IF BIG OR SMALL CASTLE
-    } else if ( IS_CHESS_COL( current_char ) ) {
-        // PAWN MOVE OR PRECISION BECAUSE OF TWO OR MORE POSSIBLE MOVES
-
-    } else if ( isdigit( current_char ) ) {
-        // PRECISION BECAUSE OF TWO OR MORE POSSIBLE MOVES
-
-    } else if ( isPiece( current_char ) ) {
-        // PIECE MOVE 
-
-    }
-
-    // Couldnt Read String
-    c_print( "Wrong format\n" );
-    return false;
-}
-
-/**
  * @brief Moves a Piece on Board from x1 and y1 to x2 and y2 (With no check for legality)
  * @param board Board
  * @param x1 X1
@@ -146,10 +116,11 @@ bool movePieceWithNotation( Board * board, cstring move ) {
  * @return true, if move was successful
  */
 bool movePieceNoCheck( Board * p_board, uint32 p_x1, uint32 p_y1, uint32 p_x2, uint32 p_y2 ) {
-    // Get Piece to move
+    // Get Squares
     Square * start_square = &p_board->squares[p_y1][p_x1];
     Square * dest_square  = &p_board->squares[p_y2][p_x2];
 
+    // Get Piece
     Piece * piece = start_square->piece;
     if ( piece == 0L ) return false;
 

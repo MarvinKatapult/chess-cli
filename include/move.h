@@ -4,15 +4,19 @@
 #include <tdef.h>
 #include <stdlib.h>
 
-typedef struct {
+#include <piece.h>
+
+typedef struct s_Piece Piece;
+
+typedef struct s_Move {
     uint32 start_x;
     uint32 start_y;
     uint32 dest_x;
     uint32 dest_y;
-    char piece;
+    struct s_Piece * piece;
 } Move;
 
-typedef struct {
+typedef struct s_MoveList {
     uint32 count_moves;
     Move * moves;
     #define MAX_NUMBER_MOVES    27
@@ -25,6 +29,17 @@ typedef struct {
  * @param size Number of Moves fit in the list
  */
 void initMoveList( MoveList * moves, uint32 count );
+
+/**
+ * @brief Initializes a Move
+ * @param move Move
+ * @param start_x Start X
+ * @param start_y Start Y
+ * @param dest_x Destination X
+ * @param dest_y Destination Y
+ * @param piece Piece to move
+ */
+void initMove( Move * move, uint32 start_x, uint32 start_y, uint32 dest_x, uint32 dest_y, Piece * piece );
 
 /**
  * @brief Wrapper for adding move to a movelist

@@ -17,9 +17,8 @@ void initMoveList( MoveList * p_moves, uint32 p_count ) {
  * @param moves MoveList Instance
  * @param move Move to add
  * @param index Position where to store move
- */
+ */ 
 void addMove( MoveList * p_moves, Move p_move, uint32 p_index ) {
     p_moves->count_moves++;
     p_moves->moves[p_index] = p_move;
 }
-

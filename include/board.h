@@ -1,9 +1,6 @@
 #ifndef __BOARD__
 #define __BOARD__
 
-#include <square.h>
-#include <piece.h>
-
 #include <tdef.h>
 #include <consoleio.h>
 
@@ -11,6 +8,9 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <stdlib.h>
+
+#include <piece.h>
+#include <square.h>
 
 #define COUNT_BOARD_SQUARES        64
 #define COUNT_SQUARES_PER_ROW      8
@@ -21,10 +21,11 @@
 #define IS_CHESS_COL( X )  ( X >= 97 && X <= 104 )
 
 typedef struct s_Piece Piece;
+typedef struct s_Square Square;
 
 typedef struct s_Board {
 
-    Square squares[COUNT_SQUARES_PER_ROW][COUNT_SQUARES_PER_ROW];
+    struct s_Square squares[COUNT_SQUARES_PER_ROW][COUNT_SQUARES_PER_ROW];
 
 } Board;
 
@@ -57,14 +58,6 @@ void printBoard( Board * board, bool clear_screen );
  * @return piece Piece
  */
 Piece * getPiece( const Board * board, uint32 x, uint32 y );
-
-/**
- * @brief Moves a Piece on Board with the common chess notation
- * @param board Board
- * @param move Move e.g. "exd5"
- * @return true, if move was legal
- */
-bool movePieceWithNotation( Board * board, cstring move );
 
 /**
  * @brief Moves a Piece on Board from x1 and y1 to x2 and y2 (With no check for legality)

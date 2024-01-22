@@ -1,7 +1,7 @@
 #ifndef __PIECE__
 #define __PIECE__
 
-// #include <board.h>
+#include <board.h>
 #include <move.h>
 
 #include <tdef.h>
@@ -9,6 +9,7 @@
 
 typedef struct s_Board Board;
 typedef struct s_Square Square;
+typedef struct s_Move Move;
 
 typedef enum {
     NONE = 0,

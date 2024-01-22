@@ -2,6 +2,7 @@
 #include <logic.h>
 #include <ctype.h>
 
+
 /**
  * @brief Moves a Piece on Board with the common chess notation
  * @param board Board

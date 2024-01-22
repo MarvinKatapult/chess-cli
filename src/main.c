@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <board.h>
 #include <tdef.h>
