@@ -25,7 +25,7 @@ typedef struct s_Square Square;
 
 typedef struct s_Board {
 
-    struct s_Square squares[COUNT_SQUARES_PER_ROW][COUNT_SQUARES_PER_ROW];
+    Square squares[COUNT_SQUARES_PER_ROW][COUNT_SQUARES_PER_ROW];
 
 } Board;
 
