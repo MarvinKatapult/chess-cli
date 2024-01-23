@@ -15,7 +15,12 @@ start the script with the -D flag (Doxygen needs to be preinstalled on the syste
 
 ### Windows
 
-TODO
+Dependencies:
+- cygwin64 (gcc)
+- (Doxygen)
+
+Just start the build.cmd script. If you want to generate Doxygen documentation
+start the script with the -D flag (Doxygen needs to be preinstalled on the system)
 
 # The Idea
 
