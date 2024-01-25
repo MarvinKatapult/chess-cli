@@ -1,17 +1,10 @@
 #include <stdio.h>
-#include <board.h>
 #include <tdef.h>
 #include <consoleio.h>
 
-// TODO: Remove
-bool printColor( Piece * p_piece ) {
-    if ( p_piece != 0L ) {
-        c_print( "Piece on square:%d;%d; is Color %s\n", p_piece->square->x, p_piece->square->y, p_piece->color == BLACK ? "Black" : "White" );
-        return true;
-    }
-    c_print( "printColor: No piece on square\n" );
-    return false;
-}
+#include <board.h>
+#include <move.h>
+#include <logic.h>
 
 int main( int argc, string_array argv ) {
     
@@ -29,17 +22,19 @@ int main( int argc, string_array argv ) {
     boardInit( &board );
     fromString( &board, board_string );
 
-    movePieceNoCheck( &board, 3, 6, 3, 4 );
-    movePieceNoCheck( &board, 1, 7, 2, 5 );
+    // Get legal moves
+    MoveNode * legal_moves = getLegalsPawn( board.squares[1][0].piece );
 
+    // Print found moves
+    debugPrintMoveList( legal_moves );
+   
+    // Move
+    applyMoveBoard( &board, getMove( legal_moves, 0 ) );
     printBoard( &board, false );
 
-    printColor( getPiece( &board, 2, 2 ) );
-    printColor( getPiece( &board, 1, 1 ) );
-    printColor( getPiece( &board, 2, 7 ) );
-    printColor( getPiece( &board, 2, 7 ) );
-    printColor( getPiece( &board, 3, 4 ) );
-    printColor( getPiece( &board, 2, 6 ) );
-
+    printf( "Number of legal moves for this pawn is %d\n", countMoveNodes( legal_moves ) );
+    
+    // Free memory
+    clearMoveList( legal_moves, true );
     return 0;
 }

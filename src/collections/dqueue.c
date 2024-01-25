@@ -28,7 +28,7 @@ void dqueue_resize_mem( PDQueue p_queue ) {
 
 void dqueue_init( PDQueue p_queue, uint32 p_max_size ) {
     p_queue = calloc( 1, sizeof( DQueue ) );
-    p_queue->data = malloc( p_max_size * sizeof( void * ))
+    p_queue->data = malloc( p_max_size * sizeof( void * ) ); 
     p_queue->size = p_max_size;
 }
 

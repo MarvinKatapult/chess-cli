@@ -5,9 +5,8 @@
 #include <consoleio.h>
 
 #include <stdio.h>
-#include <stdbool.h>
-#include <ctype.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #include <piece.h>
 #include <square.h>
@@ -21,11 +20,11 @@
 #define IS_CHESS_COL( X )  ( X >= 97 && X <= 104 )
 
 typedef struct s_Piece Piece;
-typedef struct s_Square Square;
+typedef struct s_Move Move;
 
 typedef struct s_Board {
 
-    Square squares[COUNT_SQUARES_PER_ROW][COUNT_SQUARES_PER_ROW];
+    struct s_Square ** squares; // [COUNT_SQUARES_PER_ROW][COUNT_SQUARES_PER_ROW];
 
 } Board;
 
@@ -69,5 +68,12 @@ Piece * getPiece( const Board * board, uint32 x, uint32 y );
  * @return true, if move was legal
  */
 bool movePieceNoCheck( Board * board, uint32 x1, uint32 y1, uint32 x2, uint32 y2 );
+
+/**
+ * @brief Moves a piece on board with move
+ * @param board Board
+ * @param move Move for Board
+ */
+void applyMoveBoard( Board * board, Move * move );
 
 #endif // __BOARD__

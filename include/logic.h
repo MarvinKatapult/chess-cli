@@ -2,31 +2,33 @@
 #define __LOGIC__
 
 #include <board.h>
-#include <piece.h>
 #include <move.h>
 
 #include <tdef.h>
 
-/**
- * @brief Moves a Piece on Board with the common chess notation
- * @param board Board
- * @param move Move e.g. "exd5"
- * @return true, if move was legal
- */
-bool movePieceWithNotation( Board * board, cstring move );
+typedef struct s_MoveNode MoveNode;
 
 /**
- * @brief Initializes a Move
- * @param move Move
- * @param start_x Start X
- * @param start_y Start Y
- * @param dest_x Destination X
- * @param dest_y Destination Y
- * @param piece Piece to move
+ * @brief Returns all legal moves for pawn in current position
+ * @param pawn Pawn to get legal moves for
+ * @return legal_moves Legal Moves for pawn
  */
-void initMove( Move * move, uint32 start_x, uint32 start_y, uint32 dest_x, uint32 dest_y, Piece * piece ) {
+MoveNode * getLegalsPawn( const Piece * pawn );
 
-}
+/**
+ * @brief Appends Move to movelist with starting square and destination square
+ * @param move_list Movelist move should be added to
+ * @param start_square Square piece is placed on before moving
+ * @param dest_square Square piece is placed on after moving
+ */
+void appendMoveWithSquares( MoveNode * move_list, const Square * start_square, const Square * dest_square );
 
+/**
+ * @brief Checks if square is not occupied by same colored piece
+ * @param piece Piece to possibly move
+ * @param dest_square Square to check for same colored piece
+ * @return true, if square is free of same colored piece, otherwise false
+ */
+bool isSquareFree( const Piece * piece, const Square * dest_square );
 
 #endif

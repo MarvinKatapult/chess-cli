@@ -7,6 +7,9 @@
 #include <tdef.h>
 #include <stdlib.h>
 
+#define WHITE_PAWN_START_ROW    6
+#define BLACK_PAWN_START_ROW    1
+
 typedef struct s_Board Board;
 typedef struct s_Square Square;
 typedef struct s_Move Move;
