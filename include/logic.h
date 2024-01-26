@@ -27,8 +27,9 @@ void appendMoveWithSquares( MoveNode * move_list, const Square * start_square, c
  * @brief Checks if square is not occupied by same colored piece
  * @param piece Piece to possibly move
  * @param dest_square Square to check for same colored piece
+ * @param color_sensitive If false, returns false not minding dest_square piece color, otherwise minds piece_color
  * @return true, if square is free of same colored piece, otherwise false
  */
-bool isSquareFree( const Piece * piece, const Square * dest_square );
+bool isSquareFree( const Piece * piece, const Square * dest_square, bool color_sensitive );
 
 #endif

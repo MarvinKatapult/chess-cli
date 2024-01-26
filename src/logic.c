@@ -15,7 +15,7 @@ MoveNode * getLegalsPawn( const Piece * p_pawn ) {
     MoveNode * legal_moves = initMoveNode( NULL, NULL );
     Square * dest_one_square = &board->squares[square->y + move_direction][square->x];
     bool can_move_one_square = false;
-    if ( isSquareFree( p_pawn, dest_one_square ) ) {
+    if ( isSquareFree( p_pawn, dest_one_square, false ) ) {
         // Append new legal move
         appendMoveWithSquares( legal_moves, square, dest_one_square );
         can_move_one_square = true;
@@ -29,7 +29,7 @@ MoveNode * getLegalsPawn( const Piece * p_pawn ) {
 
     // Check for 2 square move
     Square * dest_two_square = &board->squares[square->y + move_direction * 2][square->x];
-    if ( can_move_one_square && pawn_on_starting_row && isSquareFree( p_pawn, dest_two_square ) ) {
+    if ( can_move_one_square && pawn_on_starting_row && isSquareFree( p_pawn, dest_two_square, false ) ) {
         appendMoveWithSquares( legal_moves, square, dest_two_square ); 
     }
     
@@ -56,10 +56,12 @@ void appendMoveWithSquares( MoveNode * p_move_list, const Square * p_start_squar
  * @brief Checks if square is not occupied by same colored piece
  * @param piece Piece to possibly move
  * @param dest_square Square to check for same colored piece
+ * @param color_sensitive If false, returns false not minding dest_square piece color, otherwise minds piece_color
  * @return true, if square is free of same colored piece, otherwise false
  */
-bool isSquareFree( const Piece * p_piece, const Square * p_dest_square ) {
+bool isSquareFree( const Piece * p_piece, const Square * p_dest_square, bool p_color_sensitive ) {
     // Note: Has to be seperated to avoid segfault
     if ( p_dest_square->piece == NULL ) return true;
-    return ( p_dest_square->piece->color != p_piece->color );
+    if ( p_color_sensitive ) return ( p_dest_square->piece->color != p_piece->color );
+    else return false;
 }
