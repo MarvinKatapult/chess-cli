@@ -35,8 +35,9 @@ void boardInit( Board * p_board ) {
  * @brief Sets the Chessboard from fenstring
  * @param board Board
  * @param fen_string Fenstring
+ * @return true, if fenstring was set successfully, otherwise false
  */
-void fromString( Board * p_board, cstring p_fen_string ) {
+bool setBoardFromString( Board * p_board, cstring p_fen_string ) {
 
     uint32 square_index = 0;
     uint32 char_index = 0; 
@@ -66,6 +67,9 @@ void fromString( Board * p_board, cstring p_fen_string ) {
         if ( isalpha( current_char ) ) {
             // Create New Piece
             Piece * piece = malloc( sizeof( Piece ) );
+
+            // Check for out of bounds exception
+            if ( square_index >= COUNT_BOARD_SQUARES ) return false;
             Square * square = &( p_board->squares[y_index][x_index] );
             initPiece( piece, current_char, square, p_board );
 
@@ -75,6 +79,8 @@ void fromString( Board * p_board, cstring p_fen_string ) {
             continue;
         } 
     }
+
+    return true;
 }
 
 /**

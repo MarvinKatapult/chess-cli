@@ -48,9 +48,29 @@ void c_print( cstring p_format, ... ) {
 void c_print_err( cstring p_format, ... ) {
     va_list args;
     
+    // Color red
+    fprintf( stderr, "\033[1;31m" );
+
+    // Print out text
     va_start( args, p_format );
-    vfprintf( stdout, p_format, args );
+    vfprintf( stderr, p_format, args );
     va_end( args );
+    // Color normal
+    fprintf( stderr, "\033[0m" );
+}
+
+void c_print_w( cstring p_format, ... ) {
+    va_list args;
+    
+    // Color yellow
+    fprintf( stderr, "\033[1;33m" );
+
+    // Print out text
+    va_start( args, p_format );
+    vfprintf( stderr, p_format, args );
+    va_end( args );
+    // Color normal
+    fprintf( stderr, "\033[0m" );
 }
 
 /**

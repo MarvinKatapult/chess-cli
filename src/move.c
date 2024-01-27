@@ -49,7 +49,7 @@ void appendMove( MoveNode * p_move_node, Move * p_move ) {
     // There might not be a move in root move node
     if ( p_move_node->move == NULL ) {
         p_move_node->move = p_move;
-        c_print_err( "There was a movenode not being initialised with a move F:%s l:%d\n", __FILE__, __LINE__ );
+        c_print_w( "There was a movenode not being initialised with a move F:%s l:%d\n", __FILE__, __LINE__ );
         return;
     }
 
@@ -132,7 +132,7 @@ void debugPrintMoveList( MoveNode * p_move_list ) {
             c_print_err( "Uninitialised move was supposed to be printed from movenode %p\n", current );
             break;
         }
-        printf( "Move would move piece:%c from X:%dY:%d To X:%dY:%d\n", 
+        printf( "Move would move piece:%c from \n \t£X:%dY:%d To \n\tX:%dY:%d\n", 
                 move->piece->symbol, 
                 move->start_x, 
                 move->start_y, 

@@ -19,19 +19,22 @@ int main( int argc, string_array argv ) {
     // Create Board
     Board board;
     boardInit( &board );
-    fromString( &board, board_string );
+    if ( !setBoardFromString( &board, board_string ) ) {
+        c_print_err( "Couldnt Set Board with fenstring\n" );
+        return 1;
+    }
 
+    printf( "Line:%d\n", __LINE__ );
     // Get legal moves
-    MoveNode * legal_moves = getLegalsPawn( board.squares[6][0].piece );
+    MoveNode * legal_moves = getLegalsPawn( board.squares[6][2].piece );
 
-    // Print found moves
-    debugPrintMoveList( legal_moves );
+    printf( "Line:%d\n", __LINE__ );
    
     // Move
     // applyMoveBoard( &board, getMove( legal_moves, 0 ) );
     printBoard( &board, false );
 
-    printf( "Number of legal moves for this pawn is %d\n", countMoveNodes( legal_moves ) );
+    debugPrintMoveList( legal_moves );
     
     // Free memory
     clearMoveList( legal_moves, true );

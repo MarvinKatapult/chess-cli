@@ -38,8 +38,9 @@ void boardInit( Board * board );
  * @brief Sets the Chessboard from fenstring
  * @param board Board
  * @param fen_string Fenstring
+ * @return true, if fenstring was set successfully, otherwise false
  */
-void fromString( Board * board, cstring fen_string );
+bool setBoardFromString( Board * board, cstring fen_string );
 
 /**
  * @brief Prints the chessboard to the screen

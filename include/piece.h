@@ -18,14 +18,14 @@ typedef enum {
     NONE = 0,
     WHITE,
     BLACK
-} PieceColors;
+} PieceColor;
 
 typedef struct s_Piece {
     char symbol;
     Move * last_move;
     Board * board;
     Square * square;
-    PieceColors color;
+    PieceColor color;
 } Piece;
 
 
@@ -66,7 +66,7 @@ void initPiece( Piece * piece, char symbol, Square * square, Board * board );
  * @param piece Piece
  * @return color Piececolor
  */
-PieceColors getColorForPiece( const Piece * piece );
+PieceColor getColorForPiece( const Piece * piece );
 
 /**
  * @brief Returns if char is symbol of a piece
