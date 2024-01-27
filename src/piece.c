@@ -6,7 +6,7 @@
  */
 void initPiece( Piece * p_piece, char p_symbol, Square * p_square, Board * p_board ) {
     p_piece->symbol = p_symbol;
-    p_piece->last_move = 0L;
+    p_piece->last_move = NULL;
     p_piece->board = p_board;
     p_piece->square = p_square;
     p_piece->color = getColorForPiece( p_piece );
@@ -17,8 +17,8 @@ void initPiece( Piece * p_piece, char p_symbol, Square * p_square, Board * p_boa
  * @param piece Piece
  * @return color Piececolor
  */
-PieceColors getColorForPiece( const Piece * p_piece ) {
-    if ( p_piece == 0L ) return NONE;
+PieceColor getColorForPiece( const Piece * p_piece ) {
+    if ( p_piece == NULL ) return NONE;
     if ( isupper( p_piece->symbol ) != 0 ) return WHITE;
     else return BLACK; 
 }

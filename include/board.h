@@ -1,16 +1,15 @@
 #ifndef __BOARD__
 #define __BOARD__
 
-#include <square.h>
-#include <piece.h>
-
 #include <tdef.h>
 #include <consoleio.h>
 
 #include <stdio.h>
-#include <stdbool.h>
-#include <ctype.h>
 #include <stdlib.h>
+#include <ctype.h>
+
+#include <piece.h>
+#include <square.h>
 
 #define COUNT_BOARD_SQUARES        64
 #define COUNT_SQUARES_PER_ROW      8
@@ -21,10 +20,11 @@
 #define IS_CHESS_COL( X )  ( X >= 97 && X <= 104 )
 
 typedef struct s_Piece Piece;
+typedef struct s_Move Move;
 
 typedef struct s_Board {
 
-    Square squares[COUNT_SQUARES_PER_ROW][COUNT_SQUARES_PER_ROW];
+    struct s_Square ** squares; // [COUNT_SQUARES_PER_ROW][COUNT_SQUARES_PER_ROW];
 
 } Board;
 
@@ -38,8 +38,9 @@ void boardInit( Board * board );
  * @brief Sets the Chessboard from fenstring
  * @param board Board
  * @param fen_string Fenstring
+ * @return true, if fenstring was set successfully, otherwise false
  */
-void fromString( Board * board, cstring fen_string );
+bool setBoardFromString( Board * board, cstring fen_string );
 
 /**
  * @brief Prints the chessboard to the screen
@@ -59,14 +60,6 @@ void printBoard( Board * board, bool clear_screen );
 Piece * getPiece( const Board * board, uint32 x, uint32 y );
 
 /**
- * @brief Moves a Piece on Board with the common chess notation
- * @param board Board
- * @param move Move e.g. "exd5"
- * @return true, if move was legal
- */
-bool movePieceWithNotation( Board * board, cstring move );
-
-/**
  * @brief Moves a Piece on Board from x1 and y1 to x2 and y2 (With no check for legality)
  * @param board Board
  * @param x1 X1
@@ -76,5 +69,12 @@ bool movePieceWithNotation( Board * board, cstring move );
  * @return true, if move was legal
  */
 bool movePieceNoCheck( Board * board, uint32 x1, uint32 y1, uint32 x2, uint32 y2 );
+
+/**
+ * @brief Moves a piece on board with move
+ * @param board Board
+ * @param move Move for Board
+ */
+void applyMoveBoard( Board * board, Move * move );
 
 #endif // __BOARD__

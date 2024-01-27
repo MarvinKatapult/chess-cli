@@ -1,27 +1,31 @@
 #ifndef __PIECE__
 #define __PIECE__
 
-// #include <board.h>
+#include <board.h>
 #include <move.h>
 
 #include <tdef.h>
 #include <stdlib.h>
 
+#define WHITE_PAWN_START_ROW    6
+#define BLACK_PAWN_START_ROW    1
+
 typedef struct s_Board Board;
 typedef struct s_Square Square;
+typedef struct s_Move Move;
 
 typedef enum {
     NONE = 0,
     WHITE,
     BLACK
-} PieceColors;
+} PieceColor;
 
 typedef struct s_Piece {
     char symbol;
     Move * last_move;
     Board * board;
     Square * square;
-    PieceColors color;
+    PieceColor color;
 } Piece;
 
 
@@ -62,7 +66,7 @@ void initPiece( Piece * piece, char symbol, Square * square, Board * board );
  * @param piece Piece
  * @return color Piececolor
  */
-PieceColors getColorForPiece( const Piece * piece );
+PieceColor getColorForPiece( const Piece * piece );
 
 /**
  * @brief Returns if char is symbol of a piece
