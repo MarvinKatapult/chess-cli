@@ -21,14 +21,30 @@ typedef enum {
 MoveNode * getLegalsPawn( const Piece * pawn );
 
 /**
+ * @brief Checks for normal Pawn moves forward, If there are legal moves, adds thems to move_list
+ * @param move_list Movelist legal Moves get added to
+ * @param board Board
+ * @param square Square of Pawn to check for
+ * @return true, if there was atleast 1 legal move found, otherwise false
+ */
+bool getLegalPawnMove( MoveNode * move_list, const Board * board, Square * square );
+
+/**
  * @brief Returns a legal Pawn Capture for direction, if there is no legal pawn capture return NULL
  * @param move_list List of Moves to add legal Pawncapture
- * @param board Board of Pawn
  * @param square Square of Pawn
  * @param direction Direction of Pawn capture, usually Left or Right
  * @return true, if there was a legal move, otherwise false
  */
-bool getLegalPawnCapture( MoveNode * move_list, const Board * board, Square * square, PawnCaptureDirection direction );
+bool getLegalPawnCapture( MoveNode * move_list, Square * square, PawnCaptureDirection direction );
+
+/**
+ * @brief Checks for legal enpassants, if there is enpassant found, adds them to move_list
+ * @param move_list Movelist to add enpassant to
+ * @param square Square of Pawn to check for enpassant for
+ * @param direction Direction of looking for capture
+ */
+bool getLegalPawnEnpassant( MoveNode * move_list, Square * square, PawnCaptureDirection direction );
 
 /**
  * @brief Appends Move to movelist with starting square and destination square

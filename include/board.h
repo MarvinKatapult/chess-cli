@@ -25,6 +25,7 @@ typedef struct s_Move Move;
 typedef struct s_Board {
 
     struct s_Square ** squares; // [COUNT_SQUARES_PER_ROW][COUNT_SQUARES_PER_ROW];
+    struct s_Move * last_move;
 
 } Board;
 

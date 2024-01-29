@@ -7,12 +7,11 @@
  * @param move Move to initialize
  * @param start_square Starting Square of Piece
  * @param dest_square Square where piece will end up after move
- * @param piece Piece to move
  */
-void initMove( Move * p_move, Square * p_start_square, Square * p_dest_square, Piece * p_piece ) {
+void initMove( Move * p_move, Square * p_start_square, Square * p_dest_square ) {
     p_move->start_square = p_start_square;
     p_move->dest_square = p_dest_square;
-    p_move->piece = p_piece;
+    p_move->piece = p_start_square->piece;
 }
 
 /****** MOVE NODE *******/

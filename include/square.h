@@ -11,6 +11,7 @@ typedef struct s_Square {
     unsigned int x;
     unsigned int y;
     unsigned int color;
+    struct s_Board * board;
 } Square;
 
 #endif

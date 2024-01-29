@@ -21,9 +21,8 @@ typedef struct s_Move {
  * @param move Move to initialize
  * @param start_square Starting Square of Piece
  * @param dest_square Square where piece will end up after move
- * @param piece Piece to move
  */
-void initMove( Move * move, Square * start_square, Square * dest_square, Piece * piece );
+void initMove( Move * move, Square * start_square, Square * dest_square );
 
 /** MOVENODES **/
 typedef struct s_MoveNode {

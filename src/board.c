@@ -14,6 +14,7 @@ void boardInit( Board * p_board ) {
     }
 
     // Initialisation
+    p_board->last_move = NULL;
     for ( uint32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
         for ( uint32 x = 0; x < COUNT_SQUARES_PER_ROW; x++ ) {
             Square * square = &( p_board->squares[y][x] );
@@ -27,6 +28,7 @@ void boardInit( Board * p_board ) {
             square->x = x;
             square->y = y;
             square->piece = NULL;
+            square->board = p_board;
         }
     }
 }
@@ -163,4 +165,8 @@ void applyMoveBoard( Board * p_board, Move * p_move ) {
     // Set Piece
     dest_square->piece = p_move->piece;
     start_square->piece = NULL;
+
+    // Set Last move with piece
+    p_move->piece->last_move = p_move;
+    p_board->last_move = p_move;
 }

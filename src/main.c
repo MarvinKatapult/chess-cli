@@ -21,13 +21,16 @@ int main( int argc, string_array argv ) {
         c_print_err( "Couldnt Set Board with fenstring\n" );
         return 1;
     }
+   
+    // Move to make enpassant legal
+    Move double_pawn_move;
+    initMove( &double_pawn_move, &board.squares[1][7], &board.squares[3][7] );
+
+    applyMoveBoard( &board, &double_pawn_move );
+    printBoard( &board, false );
 
     // Get legal moves
-    MoveNode * legal_moves = getLegalsPawn( board.squares[6][3].piece );
-   
-    // Move
-    // applyMoveBoard( &board, getMove( legal_moves, 0 ) );
-    printBoard( &board, false );
+    MoveNode * legal_moves = getLegalsPawn( board.squares[3][6].piece );
 
     // Print moves
     debugPrintMoveList( legal_moves );
