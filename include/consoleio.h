@@ -40,12 +40,20 @@ void c_clear( void );
 void c_print( cstring format, ... );
 
 /**
- * @brief Writes the C string pointed by format to the error output (stderr).
+ * @brief Writes the C string pointed by format to the error output (stderr) as a error (red)
  * 
  * @param format C string that contains the text to be written to stderr.
  * @param ... Additional arguments to format the string. Anymore arguments than specifiers get ignored.
  */
 void c_print_err( cstring format, ... );
+
+/**
+ * @brief Writes the C string pointed by format to the error output (stderr) as a warning (yellow).
+ * 
+ * @param format C string that contains the text to be written to stderr.
+ * @param ... Additional arguments to format the string. Anymore arguments than specifiers get ignored.
+ */
+void c_print_w( cstring format, ... );
 
 /**
  * @brief Writes the C string pointed by format to the stream.

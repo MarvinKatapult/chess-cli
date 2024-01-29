@@ -7,7 +7,7 @@
 /**
  * @brief bool is an enum boolean with 2 possible values, FALSE = 0, TRUE = 1
  */
-typedef enum { true, false } bool;
+typedef enum { false = 0, true } bool;
 
 /* typedef signed integers */
 
