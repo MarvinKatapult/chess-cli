@@ -28,7 +28,7 @@ MoveNode * getLegalsPawn( const Piece * pawn );
  * @param direction Direction of Pawn capture, usually Left or Right
  * @return true, if there was a legal move, otherwise false
  */
-bool getLegalPawnCapture( MoveNode * move_list, const Board * board, const Square * square, PawnCaptureDirection direction );
+bool getLegalPawnCapture( MoveNode * move_list, const Board * board, Square * square, PawnCaptureDirection direction );
 
 /**
  * @brief Appends Move to movelist with starting square and destination square
@@ -36,7 +36,7 @@ bool getLegalPawnCapture( MoveNode * move_list, const Board * board, const Squar
  * @param start_square Square piece is placed on before moving
  * @param dest_square Square piece is placed on after moving
  */
-void appendMoveWithSquares( MoveNode * move_list, const Square * start_square, const Square * dest_square );
+void appendMoveWithSquares( MoveNode * move_list, Square * start_square, Square * dest_square );
 
 /**
  * @brief Checks if square is not occupied by same colored piece

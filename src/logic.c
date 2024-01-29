@@ -13,7 +13,7 @@ MoveNode * getLegalsPawn( const Piece * p_pawn ) {
     }
 
     const Board * board = p_pawn->board; 
-    const Square * square = p_pawn->square; 
+    Square * square = p_pawn->square; 
 
     const int8 move_direction = getColorForPiece( p_pawn ) == WHITE ? -1 : 1;
 
@@ -56,12 +56,12 @@ MoveNode * getLegalsPawn( const Piece * p_pawn ) {
  * @param direction Direction of Pawn capture, usually Left or Right
  * @return true, if there was a legal move, otherwise false
  */
-bool getLegalPawnCapture( MoveNode * p_move_list, const Board * p_board, const Square * p_square, PawnCaptureDirection p_direction ) {
+bool getLegalPawnCapture( MoveNode * p_move_list, const Board * p_board, Square * p_square, PawnCaptureDirection p_direction ) {
     // Get coordinates for destination p_square
-    int32 x_p_direction = p_direction == LEFT ? -1 : 1;
-    int32 y_p_direction = p_square->piece->color == WHITE ? -1 : 1;
-    int32 x_coordinate = p_square->x + x_p_direction;
-    int32 y_coordinate = p_square->y + y_p_direction;
+    const int32 x_p_direction = p_direction == LEFT ? -1 : 1;
+    const int32 y_p_direction = p_square->piece->color == WHITE ? -1 : 1;
+    const int32 x_coordinate = p_square->x + x_p_direction;
+    const int32 y_coordinate = p_square->y + y_p_direction;
 
     // Check for edges of p_board
     if ( x_coordinate < 0 || x_coordinate > 7 ) return false;
@@ -81,9 +81,9 @@ bool getLegalPawnCapture( MoveNode * p_move_list, const Board * p_board, const S
  * @param start_square Square piece is placed on before moving
  * @param dest_square Square piece is placed on after moving
  */
-void appendMoveWithSquares( MoveNode * p_move_list, const Square * p_start_square, const Square * p_dest_square ) {
+void appendMoveWithSquares( MoveNode * p_move_list, Square * p_start_square, Square * p_dest_square ) {
     Move * new_legal_move = (Move *)malloc( sizeof( Move ) );
-    initMove( new_legal_move, p_start_square->x, p_start_square->y, p_dest_square->x, p_dest_square->y, p_start_square->piece );
+    initMove( new_legal_move, p_start_square, p_dest_square, p_start_square->piece );
     appendMove( p_move_list, new_legal_move );
 }
 

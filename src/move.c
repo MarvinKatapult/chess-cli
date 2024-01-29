@@ -5,17 +5,13 @@
 /**
  * @brief Initializes Move
  * @param move Move to initialize
- * @param start_x Start x of move
- * @param start_y Start y of move
- * @param dest_x Destination x of move
- * @param dest_y Destination y of move
+ * @param start_square Starting Square of Piece
+ * @param dest_square Square where piece will end up after move
  * @param piece Piece to move
  */
-void initMove( Move * p_move, uint32 p_start_x, uint32 p_start_y, uint32 p_dest_x, uint32 p_dest_y, Piece * p_piece ) {
-    p_move->start_x = p_start_x;
-    p_move->start_y = p_start_y;
-    p_move->dest_x = p_dest_x;
-    p_move->dest_y = p_dest_y;
+void initMove( Move * p_move, Square * p_start_square, Square * p_dest_square, Piece * p_piece ) {
+    p_move->start_square = p_start_square;
+    p_move->dest_square = p_dest_square;
     p_move->piece = p_piece;
 }
 
@@ -134,10 +130,10 @@ void debugPrintMoveList( MoveNode * p_move_list ) {
         }
         printf( "Move would move piece:%c from \n \t£X:%dY:%d To \n\tX:%dY:%d\n", 
                 move->piece->symbol, 
-                move->start_x, 
-                move->start_y, 
-                move->dest_x, 
-                move->dest_y );
+                move->start_square->x, 
+                move->start_square->y, 
+                move->dest_square->x, 
+                move->dest_square->y );
         if ( current->next != NULL ) current = current->next;
         else break;
     }

@@ -157,8 +157,8 @@ void applyMoveBoard( Board * p_board, Move * p_move ) {
         return;
     }
     // Get Squares
-    Square * start_square = &p_board->squares[p_move->start_y][p_move->start_x];
-    Square * dest_square = &p_board->squares[p_move->dest_y][p_move->dest_x];
+    Square * start_square = &p_board->squares[p_move->start_square->y][p_move->start_square->x];
+    Square * dest_square = &p_board->squares[p_move->dest_square->y][p_move->dest_square->x];
 
     // Set Piece
     dest_square->piece = p_move->piece;
