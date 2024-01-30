@@ -1,22 +1,17 @@
 #include <move.h>
 
 /****** MOVE *******/
-
 /**
  * @brief Initializes Move
  * @param move Move to initialize
- * @param start_x Start x of move
- * @param start_y Start y of move
- * @param dest_x Destination x of move
- * @param dest_y Destination y of move
- * @param piece Piece to move
+ * @param start_square Starting Square of Piece
+ * @param dest_square Square where piece will end up after move
  */
-void initMove( Move * p_move, uint32 p_start_x, uint32 p_start_y, uint32 p_dest_x, uint32 p_dest_y, Piece * p_piece ) {
-    p_move->start_x = p_start_x;
-    p_move->start_y = p_start_y;
-    p_move->dest_x = p_dest_x;
-    p_move->dest_y = p_dest_y;
-    p_move->piece = p_piece;
+void initMove( Move * p_move, Square * p_start_square, Square * p_dest_square ) {
+    p_move->start_square = p_start_square;
+    p_move->dest_square = p_dest_square;
+    p_move->piece = p_start_square->piece;
+    if ( p_move->piece == NULL ) c_print_err( "Recieved NULL Piece in initMove Line:%d File:%s\n", __LINE__, __FILE__ );
 }
 
 /****** MOVE NODE *******/
@@ -49,7 +44,7 @@ void appendMove( MoveNode * p_move_node, Move * p_move ) {
     // There might not be a move in root move node
     if ( p_move_node->move == NULL ) {
         p_move_node->move = p_move;
-        c_print_w( "There was a movenode not being initialised with a move F:%s l:%d\n", __FILE__, __LINE__ );
+        // c_print_w( "There was a movenode not being initialised with a move F:%s l:%d\n", __FILE__, __LINE__ );
         return;
     }
 
@@ -79,12 +74,16 @@ void appendMove( MoveNode * p_move_node, Move * p_move ) {
 Move * getMove( MoveNode * p_move_node, int p_position ) {
     MoveNode * current = p_move_node;
     for ( int i = 0; i < p_position; i++ ) {
+        if ( current == NULL ) {
+            c_print_err( "getMove: position is out of bounds returning NULL Line:%d File:%s\n", __LINE__, __FILE__ );
+            return NULL;
+        }
         current = current->next; 
     }
     return current->move;
 }
 
-/** THIS DOES NOT WORK: IT CAUSES SEG FAULT TODO *****
+/**
  * @brief Clears a movelist of all elements and frees memory
  * @param move_node Root node of the movelist
  * @param free_moves If true also frees the memory of allocated memory for moves
@@ -134,10 +133,10 @@ void debugPrintMoveList( MoveNode * p_move_list ) {
         }
         printf( "Move would move piece:%c from \n \t£X:%dY:%d To \n\tX:%dY:%d\n", 
                 move->piece->symbol, 
-                move->start_x, 
-                move->start_y, 
-                move->dest_x, 
-                move->dest_y );
+                move->start_square->x, 
+                move->start_square->y, 
+                move->dest_square->x, 
+                move->dest_square->y );
         if ( current->next != NULL ) current = current->next;
         else break;
     }

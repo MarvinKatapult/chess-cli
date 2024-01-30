@@ -4,28 +4,25 @@
 #include <tdef.h>
 #include <stdlib.h>
 
+#include <square.h>
 #include <piece.h>
 
 typedef struct s_Piece Piece;
+typedef struct s_Square Square;
 
 typedef struct s_Move {
-    uint32 start_x;
-    uint32 start_y;
-    uint32 dest_x;
-    uint32 dest_y;
+    struct s_Square * start_square;
+    struct s_Square * dest_square;
     struct s_Piece * piece;
 } Move;
 
 /**
  * @brief Initializes Move
  * @param move Move to initialize
- * @param start_x Start x of move
- * @param start_y Start y of move
- * @param dest_x Destination x of move
- * @param dest_y Destination y of move
- * @param piece Piece to move
+ * @param start_square Starting Square of Piece
+ * @param dest_square Square where piece will end up after move
  */
-void initMove( Move * move, uint32 start_x, uint32 start_y, uint32 dest_x, uint32 dest_y, Piece * piece );
+void initMove( Move * move, Square * start_square, Square * dest_square );
 
 /** MOVENODES **/
 typedef struct s_MoveNode {

@@ -1,11 +1,9 @@
-#include <stdio.h>
 #include <tdef.h>
 #include <consoleio.h>
 
 #include <board.h>
 #include <move.h>
 #include <logic.h>
-#include <string.h>
 
 int main( int argc, string_array argv ) {
     
@@ -24,19 +22,16 @@ int main( int argc, string_array argv ) {
         return 1;
     }
 
-    printf( "Line:%d\n", __LINE__ );
-    // Get legal moves
-    MoveNode * legal_moves = getLegalsPawn( board.squares[6][2].piece );
+    for ( int32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
+        for ( int32 x = 0; x < COUNT_SQUARES_PER_ROW; x++ ) {
+            MoveNode * legal_moves = getLegals( &board.squares[y][x] );
 
-    printf( "Line:%d\n", __LINE__ );
-   
-    // Move
-    // applyMoveBoard( &board, getMove( legal_moves, 0 ) );
-    printBoard( &board, false );
+            debugPrintBoard( &board, legal_moves );
 
-    debugPrintMoveList( legal_moves );
+            clearMoveList( legal_moves, true );
+        }
     
-    // Free memory
-    clearMoveList( legal_moves, true );
+    }
+
     return 0;
 }
