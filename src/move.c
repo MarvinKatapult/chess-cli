@@ -10,8 +10,8 @@
 void initMove( Move * p_move, Square * p_start_square, Square * p_dest_square ) {
     p_move->start_square = p_start_square;
     p_move->dest_square = p_dest_square;
-    if ( p_move->piece == NULL ) c_print_err( "Recieved NULL Piece in initMove Line:%d File:%s\n", __LINE__, __FILE__ );
     p_move->piece = p_start_square->piece;
+    if ( p_move->piece == NULL ) c_print_err( "Recieved NULL Piece in initMove Line:%d File:%s\n", __LINE__, __FILE__ );
 }
 
 /****** MOVE NODE *******/
