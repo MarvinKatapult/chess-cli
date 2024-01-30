@@ -1,6 +1,7 @@
 # chess-cli
 
 Chess in a command line interface
+
 ![image](https://github.com/MarvinKatapult/chess-cli/assets/144482707/63a4813c-c589-4020-b80f-24ef0b66f113)
 
 # How to build
