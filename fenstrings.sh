@@ -21,6 +21,10 @@ case "$index" in
 # All pieces except Knight
 4) fenstring="rnbqkbnr/pppppppp/8/2Q3P1/RBb1K3/8/PPPPPPPP/RNBQKBNR"
     ;;
+
+# For Knights
+5) fenstring="rnbqkbnr/pppppppp/8/N3N3/7n/8/PPPPPPPP/RNBQKBNR"
+    ;;
 esac
 
 ./chess "$fenstring"

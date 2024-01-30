@@ -22,16 +22,9 @@ int main( int argc, string_array argv ) {
         return 1;
     }
 
-    for ( int32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
-        for ( int32 x = 0; x < COUNT_SQUARES_PER_ROW; x++ ) {
-            MoveNode * legal_moves = getLegals( &board.squares[y][x] );
+    getLegalsBoard( &board, true );
 
-            debugPrintBoard( &board, legal_moves );
-
-            clearMoveList( legal_moves, true );
-        }
-    
-    }
+    c_print( "All done\n" );
 
     return 0;
 }

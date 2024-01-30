@@ -1,4 +1,5 @@
 #include <logic.h>
+#include <stdlib.h>
 
 #define GET_PAWN_Y_DIRECTION( X )   X->color == WHITE ? -1 : 1;
 #define IS_COORDINATE_OUT_OF_BOUNDS( X )    ( X < 0 || X > 7 )
@@ -267,10 +268,71 @@ MoveNode * getLegalsBishop( Piece * p_bishop ) {
 }
 
 /**
+ * @brief Returns legal moves for Bishop
+ * @param knight Knightpiece
+ * @return legal_moves for knight
+ */
+MoveNode * getLegalsKnight( Piece * p_knight ) {
+    MoveNode * legal_knight_moves = initMoveNode( NULL, NULL );
+    if ( p_knight == NULL ) {
+        c_print_err( "Recieved NULL Knight Piece in getLegalsKnight Line:%d File:%s\n", __LINE__, __FILE__ );
+        return legal_knight_moves;
+    }    
+
+    Square * square = p_knight->square;
+    Board * board = p_knight->board;
+
+    for ( int32 x = -2; x <= 2; x++ ) {
+        for ( int32 y = -2; y <= 2; y++ ) {
+            // Get x and y
+            int32 x_coordinate = square->x + x;
+            int32 y_coordinate = square->y + y;
+
+            // Check for outofbounds
+            if ( IS_COORDINATE_OUT_OF_BOUNDS( y_coordinate ) || y == 0) continue;
+            if ( IS_COORDINATE_OUT_OF_BOUNDS( x_coordinate ) || x == 0 ) break;
+            if ( abs( x ) == abs( y ) ) continue;
+
+            Square * dest_square = &board->squares[y_coordinate][x_coordinate];
+            // Check for samecolored piece on square
+            if ( !squareHasMate( p_knight->color, dest_square ) ) appendMoveWithSquares( legal_knight_moves, square, dest_square );
+        }
+    }
+
+    return legal_knight_moves;
+}
+
+/**
+ * @brief Returns a list of legal moves for every piece on board
+ * @param board Board to check for legal moves for
+ * @param print_board If true prints the board for every piece with legal moves
+ * @return legal moves
+ */
+MoveNode * getLegalsBoard( Board * p_board, bool p_print_board ) {
+    MoveNode * legal_moves = initMoveNode( NULL, NULL );
+    if ( p_board == NULL ) {
+        c_print_err( "Recieved NULL Board in getLegalsBoard Line:%s File:%s\n", __LINE__, __FILE__ );
+        return legal_moves; 
+    } 
+
+    // Get Legals for every square
+    for ( int32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
+        for ( int32 x = 0; x < COUNT_SQUARES_PER_ROW; x++ ) {
+            MoveNode * legal_moves_for_piece = getLegalsSquare( &p_board->squares[y][x] );
+            addMovesToMoveNode( legal_moves, legal_moves_for_piece );
+
+            if ( p_print_board )debugPrintBoard( p_board, legal_moves_for_piece );
+        }
+    }
+
+    return legal_moves;
+}
+
+/**
  * @brief Gets legal moves for piece on square. If no piece on square, returns an empty list
  * @param square Square to check for legal moves for
  */
-MoveNode * getLegals( Square * p_square ) {
+MoveNode * getLegalsSquare( Square * p_square ) {
     MoveNode * legal_moves = initMoveNode( NULL, NULL );
     if ( p_square == NULL ) return legal_moves;
 
@@ -287,6 +349,9 @@ MoveNode * getLegals( Square * p_square ) {
         case WHITE_BISHOP:
         case BLACK_BISHOP:
             return getLegalsBishop( piece );
+        case WHITE_KNIGHT:
+        case BLACK_KNIGHT:
+            return getLegalsKnight( piece );
         case WHITE_QUEEN:
         case BLACK_QUEEN:
             return getLegalsQueen( piece );
@@ -328,9 +393,7 @@ void addMovesToMoveNode( MoveNode * p_move_list, MoveNode * p_moves_to_add ) {
 
         // Append move
         Move * move = current->move;
-        Square * start_square = move->start_square;
-        Square * dest_square = move->dest_square;
-        appendMoveWithSquares( p_move_list, start_square, dest_square );
+        appendMove( p_move_list, move );
 
         current = current->next;
     }

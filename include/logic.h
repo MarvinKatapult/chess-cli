@@ -24,7 +24,15 @@ typedef enum {
  * @brief Gets legal moves for piece on square. If no piece on square, returns an empty list
  * @param square Square to check for legal moves for
  */
-MoveNode * getLegals( Square * square );
+MoveNode * getLegalsSquare( Square * square );
+
+/**
+ * @brief Returns a list of legal moves for every piece on board
+ * @param board Board to check for legal moves for
+ * @param print_board If true prints the board for every piece with legal moves
+ * @return legal moves
+ */
+MoveNode * getLegalsBoard( Board * board, bool print_board );
 
 /**
  * @brief Returns all legal moves for pawn in current position
@@ -95,6 +103,13 @@ MoveNode * getLegalsRook( Piece * rook );
  * @return legal_moves for Bishop
  */
 MoveNode * getLegalsBishop( Piece * bishop );
+
+/**
+ * @brief Returns legal moves for Bishop
+ * @param knight Knightpiece
+ * @return legal_moves for knight
+ */
+MoveNode * getLegalsKnight( Piece * knight );
 
 /**
  * @brief Appends Move to movelist with starting square and destination square
