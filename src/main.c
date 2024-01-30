@@ -22,9 +22,6 @@ int main( int argc, string_array argv ) {
         return 1;
     }
 
-    // Print moves
-    // debugPrintMoveList( legal_moves );
-
     for ( int32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
         for ( int32 x = 0; x < COUNT_SQUARES_PER_ROW; x++ ) {
             MoveNode * legal_moves = getLegals( &board.squares[y][x] );
@@ -35,8 +32,6 @@ int main( int argc, string_array argv ) {
         }
     
     }
-
-    // printBoard( &board, false, false );
 
     return 0;
 }
