@@ -21,22 +21,22 @@ int main( int argc, string_array argv ) {
         c_print_err( "Couldnt Set Board with fenstring\n" );
         return 1;
     }
-   
-    // Move to make enpassant legal
-    Move double_pawn_move;
-    initMove( &double_pawn_move, &board.squares[1][7], &board.squares[3][7] );
-
-    applyMoveBoard( &board, &double_pawn_move );
-    printBoard( &board, false );
-
-    // Get legal moves
-    MoveNode * legal_moves = getLegalsPawn( board.squares[3][6].piece );
 
     // Print moves
-    debugPrintMoveList( legal_moves );
+    // debugPrintMoveList( legal_moves );
+
+    for ( int32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
+        for ( int32 x = 0; x < COUNT_SQUARES_PER_ROW; x++ ) {
+            MoveNode * legal_moves = getLegals( &board.squares[y][x] );
+
+            debugPrintBoard( &board, legal_moves );
+
+            clearMoveList( legal_moves, true );
+        }
     
-    // Free memory
-    clearMoveList( legal_moves, true );
+    }
+
+    // printBoard( &board, false, false );
 
     return 0;
 }

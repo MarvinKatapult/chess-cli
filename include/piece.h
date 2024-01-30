@@ -43,15 +43,15 @@ typedef enum {
     BLACK_ROOK   = 'r',
     BLACK_QUEEN  = 'q',
     BLACK_KING   = 'k'
-} ColoredPieces;
+} ColoredPiece;
 
 typedef enum {
-    PAWN = 0,
-    KNIGHT,
-    BISHOP,
-    ROOK,
-    QUEEN,
-    KING
+    PAWN = 'P',
+    KNIGHT = 'K',
+    BISHOP = 'B',
+    ROOK = 'R',
+    QUEEN = 'Q',
+    KING = 'K'
 } Pieces;
 
 /**
@@ -62,6 +62,16 @@ typedef enum {
 void initPiece( Piece * piece, char symbol, Square * square, Board * board );
 
 /**
+ * @brief Get Piece from board with x and y
+ *        If the field is empty return 0L
+ * @param board Board
+ * @param x X
+ * @param y Y
+ * @return piece Piece
+ */
+Piece * getPiece( const Board * board, uint32 x, uint32 y );
+
+/**
  * @brief Returns color for piece piece
  * @param piece Piece
  * @return color Piececolor
@@ -69,10 +79,18 @@ void initPiece( Piece * piece, char symbol, Square * square, Board * board );
 PieceColor getColorForPiece( const Piece * piece );
 
 /**
+ * @brief Checks if piece is piece_to_check
+ * @param piece Piece to check with
+ * @param piece_to_check Piece to check for
+ * @return true if piece is piece_to_check
+ */
+bool isPiecePiece( const Piece * piece, Pieces piece_to_check );
+
+/**
  * @brief Returns if char is symbol of a piece
  * @param piece Char to check
  * @return true, if is piece, otherwise false
  */
-bool isPiece( ColoredPieces piece );
+bool isPiece( ColoredPiece piece );
 
 #endif

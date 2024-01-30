@@ -24,11 +24,33 @@ PieceColor getColorForPiece( const Piece * p_piece ) {
 }
 
 /**
+ * @brief Get Piece from board with x and y
+ * @param board Board
+ * @param x X
+ * @param y Y
+ * @return piece Piece
+ */
+Piece * getPiece( const Board * p_board, uint32 p_x, uint32 p_y ) {
+    return p_board->squares[p_y][p_x].piece;
+}
+
+/**
+ * @brief Checks if piece is piece_to_check
+ * @param piece Piece to check with
+ * @param piece_to_check Piece to check for
+ * @return true if piece is piece_to_check
+ */
+bool isPiecePiece( const Piece * p_piece, Pieces p_piece_to_check ) {
+    if ( p_piece == NULL ) return false;
+    return ( toupper( p_piece->symbol ) == (int)p_piece_to_check );
+}
+
+/**
  * @brief Returns if char is symbol of a piece
  * @param p Char to check
  * @return true, if is piece, otherwise false
  */
-bool isPiece( ColoredPieces p ) {
+bool isPiece( ColoredPiece p ) {
     return ( p == WHITE_PAWN   || p == BLACK_PAWN
           || p == WHITE_KNIGHT || p == BLACK_KNIGHT
           || p == WHITE_BISHOP || p == BLACK_BISHOP

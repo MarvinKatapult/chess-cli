@@ -21,6 +21,7 @@
 
 typedef struct s_Piece Piece;
 typedef struct s_Move Move;
+typedef struct s_MoveNode MoveNode;
 
 typedef struct s_Board {
 
@@ -46,19 +47,17 @@ bool setBoardFromString( Board * board, cstring fen_string );
 /**
  * @brief Prints the chessboard to the screen
  * @param board Board
+ * @param show_letter_columns If true display a-h as y coordinate, otherwise 0 - 7
  * @param clear_screen Clears the screen when set to true
  */
-void printBoard( Board * board, bool clear_screen );
+void printBoard( Board * board, bool show_letter_columns, bool clear_screen );
 
 /**
- * @brief Get Piece from board with x and y
- *        If the field is empty return 0L
+ * @brief Debug prints Board with legal moves. Visualizes legal Moves with . and bold Piece to move
  * @param board Board
- * @param x X
- * @param y Y
- * @return piece Piece
+ * @param legal_moves Legal moves to showcase
  */
-Piece * getPiece( const Board * board, uint32 x, uint32 y );
+void debugPrintBoard( Board * board, MoveNode * legal_moves );
 
 /**
  * @brief Moves a Piece on Board from x1 and y1 to x2 and y2 (With no check for legality)

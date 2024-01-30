@@ -88,8 +88,10 @@ bool setBoardFromString( Board * p_board, cstring p_fen_string ) {
 /**
  * @brief Prints the chessboard to the screen
  * @param board Board
+ * @param show_letter_columns If true display a-h as y coordinate, otherwise 0 - 7
+ * @param clear_screen Clears the screen when set to true
  */
-void printBoard( Board * p_board, bool p_clear_screen ) {
+void printBoard( Board * p_board, bool p_show_letter_columns, bool p_clear_screen ) {
 
     // Clear the screen
     if ( p_clear_screen ) c_clear();
@@ -107,19 +109,83 @@ void printBoard( Board * p_board, bool p_clear_screen ) {
         }
         // At the end of line, do linebreak
         c_print( "\n   -----------------\n" );
-        if ( y == COUNT_SQUARES_PER_ROW - 1 ) c_print( "    0 1 2 3 4 5 6 7\n" );
+        if ( y == COUNT_SQUARES_PER_ROW - 1 ) {
+            if ( p_show_letter_columns ) c_print( "    a b c d e f g h\n" );
+            else c_print( "    0 1 2 3 4 5 6 7\n" );
+        }
     }
 }
 
 /**
- * @brief Get Piece from board with x and y
- * @param board Board
- * @param x X
- * @param y Y
- * @return piece Piece
+ * @brief Checks if square is as destination square in movelist
  */
-Piece * getPiece( const Board * p_board, uint32 p_x, uint32 p_y ) {
-    return p_board->squares[p_y][p_x].piece;
+static bool isSquareInMoveList( Square * p_square, MoveNode * p_move_list ) {
+    if ( p_square == NULL ) return false;
+
+    MoveNode * current = p_move_list;
+    while( current != NULL ) {
+        if ( current->move == NULL ) {
+            current = current->next;
+            continue;
+        }
+        Move * move = current->move;
+        if ( move->dest_square == p_square ) return true;
+
+        current = current->next;
+    }
+
+    return false;
+}
+
+/**
+ * @brief Debug prints Board with legal moves. Visualizes legal Moves with . and bold Piece to move
+ * @param board Board
+ * @param legal_moves Legal moves to showcase
+ */
+void debugPrintBoard( Board * p_board, MoveNode * p_legal_moves ) {
+    if ( p_legal_moves == NULL ) {
+        // c_print_err( "Recieved empty Movelist in debugPrintBoard Line:%d File:%s\n", __LINE__, __FILE__ );
+        return;
+    }
+    if ( p_legal_moves->move == NULL && p_legal_moves->next == NULL ) {
+        // c_print_w( "Recieved empty MoveList in debugPrintBoard Line:%d File:%s\n", __LINE__, __FILE__ );
+        return;
+    }
+    if ( p_legal_moves->move == NULL ) {
+        // c_print_w( "Recieved empty move in debugPrintBoard Line:%d File:%s\n", __LINE__, __FILE__ );
+        return;
+    }
+
+    Piece * piece_to_make_bold = p_legal_moves->move->piece;
+    if ( piece_to_make_bold == NULL ) {
+        printBoard( p_board, false, false );
+        return;
+    }
+
+    // Print Chessboard
+    c_print( "    --Chess Board--\n" );
+    c_print( "  -----------------\n" );
+    for ( uint32 y = 0; y < COUNT_SQUARES_PER_ROW; y++ ) {
+        for ( uint32 x = 0; x < COUNT_SQUARES_PER_ROW; x++ ) {
+            if ( x == 0 ) c_print( "%d  |", y );
+
+            Square * square_to_draw = &p_board->squares[y][x];
+            Piece * piece = square_to_draw->piece;
+            if ( piece == piece_to_make_bold ) {
+                c_print( "\033[31m\033[1m%c\033[0m|", piece->symbol );
+            }
+            else if ( isSquareInMoveList( square_to_draw, p_legal_moves ) && piece != NULL ) c_print( "\033[34m%c\033[0m|", piece->symbol );
+            else if ( isSquareInMoveList( square_to_draw, p_legal_moves ) ) c_print( ".|" );
+            else if ( piece != NULL ) c_print( "%c|", piece->symbol );
+            else c_print( " |" );
+        }
+        // At the end of line, do linebreak
+        c_print( "\n   -----------------\n" );
+        if ( y == COUNT_SQUARES_PER_ROW - 1 ) {
+            c_print( "    0 1 2 3 4 5 6 7\n" );
+        }
+    }
+
 }
 
 /**
