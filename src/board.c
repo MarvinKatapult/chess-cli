@@ -140,7 +140,7 @@ static bool isSquareInMoveList( Square * p_square, MoveNode * p_move_list ) {
 /**
  * @brief Debug prints Board with legal moves. Visualizes legal Moves with . and bold Piece to move
  * @param board Board
- * @param legal_moves Legal moves to showcase
+ * @param legal_moves Legal moves of ONE Piece
  */
 void debugPrintBoard( Board * p_board, MoveNode * p_legal_moves ) {
     if ( p_legal_moves == NULL ) {

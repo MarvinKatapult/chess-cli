@@ -25,6 +25,10 @@ case "$index" in
 # For Knights
 5) fenstring="rnbqkbnr/pppppppp/8/N3N3/7n/8/PPPPPPPP/RNBQKBNR"
     ;;
+
+# For Screenshot for readme github 
+6) fenstring="r1bqkb1r/ppp1pppp/2n2n2/3p4/3PP3/2N2N2/PPP1PPPP/R1BQKB1R"
+    ;;
 esac
 
 ./chess "$fenstring"

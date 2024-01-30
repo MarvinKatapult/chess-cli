@@ -55,7 +55,7 @@ void printBoard( Board * board, bool show_letter_columns, bool clear_screen );
 /**
  * @brief Debug prints Board with legal moves. Visualizes legal Moves with . and bold Piece to move
  * @param board Board
- * @param legal_moves Legal moves to showcase
+ * @param legal_moves Legal moves of ONE Piece
  */
 void debugPrintBoard( Board * board, MoveNode * legal_moves );
 

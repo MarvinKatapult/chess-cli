@@ -15,7 +15,7 @@ typedef struct s_Square Square;
 typedef struct s_Move Move;
 
 typedef enum {
-    NONE = 0,
+    NO_COLOR = 0,
     WHITE,
     BLACK
 } PieceColor;

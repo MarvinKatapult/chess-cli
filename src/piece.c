@@ -18,7 +18,7 @@ void initPiece( Piece * p_piece, char p_symbol, Square * p_square, Board * p_boa
  * @return color Piececolor
  */
 PieceColor getColorForPiece( const Piece * p_piece ) {
-    if ( p_piece == NULL ) return NONE;
+    if ( p_piece == NULL ) return NO_COLOR;
     if ( isupper( p_piece->symbol ) != 0 ) return WHITE;
     else return BLACK; 
 }
