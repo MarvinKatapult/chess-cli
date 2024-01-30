@@ -22,7 +22,8 @@ int main( int argc, string_array argv ) {
         return 1;
     }
 
-    getLegalsBoard( &board, true );
+    MoveNode * all_legal_moves = getLegalsBoard( &board, true );
+    clearMoveList( all_legal_moves, true );
 
     c_print( "All done\n" );
 
